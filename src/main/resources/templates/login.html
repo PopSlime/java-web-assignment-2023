@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="zh-cn" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="/static/css/login.css">
+    <script type="text/javascript" src="/static/js/jquery-1.4.2.js"></script>
+    <title>登录—电影网</title>
+</head>
+<body>
+<div id="top" th:insert="top.html"></div>
+<div id="welcome">欢迎登录电影网</div>
+
+<div id="inputAccount">
+    <a>账户:</a><input type="text" id="account" name="text-input">
+</div>
+<div id="inputPassword">
+    <a>密码:</a><input type="text" id="password" name="text-input">
+</div>
+<button id="loginButton">登录</button>
+
+</body>
+</html>
