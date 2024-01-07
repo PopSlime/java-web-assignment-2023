@@ -1,42 +1,41 @@
-#showFilmBanner{
-   text-align: center;
-   margin-top: 20px;
+#showFilmBanner {
+    text-align: center;
+    margin-top: 20px;
 }
 
-#rank{
-   position: absolute;
-   text-align: center;
-   width: 1800px;
-   height: 20px;
-   margin-top: 20px;
-   margin-left: -50px;
-
+#rank {
+    position: absolute;
+    text-align: center;
+    width: 1800px;
+    height: 20px;
+    margin-top: 20px;
+    margin-left: -50px;
 }
 
-#allRank{
-   background-color: coral;
-   display: inline-block;
-   width: 400px;
-   height: 20px;
+#allRank {
+    background-color: coral;
+    display: inline-block;
+    width: 400px;
+    height: 20px;
 }
 
-#weekRank{
-   background-color: greenyellow;
-   display: inline-block;
-   width: 400px;
-   height: 20px;
+#weekRank {
+    background-color: greenyellow;
+    display: inline-block;
+    width: 400px;
+    height: 20px;
 }
 
-#monthRank{
-   background-color: aquamarine;
-   display: inline-block;
-   width: 400px;
-   height: 20px;
+#monthRank {
+    background-color: aquamarine;
+    display: inline-block;
+    width: 400px;
+    height: 20px;
 }
 
-#commentRank{
-   background-color: cadetblue;
-   display: inline-block;
-   width: 400px;
-   height: 20px;
+#commentRank {
+    background-color: cadetblue;
+    display: inline-block;
+    width: 400px;
+    height: 20px;
 }

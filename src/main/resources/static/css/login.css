@@ -1,29 +1,32 @@
-#welcome{
+#welcome {
     margin-top: 50px;
     text-align: center;
     font-size: 30px;
 }
 
-#inputAccount,#inputPassword{
+#inputAccount,
+#inputPassword {
     margin-top: 20px;
-   margin-left: 650px;
+    margin-left: 650px;
     width: 360px;
     height: 20px;
 }
 
-#inputAccount a,#inputPassword a{
+#inputAccount a,
+#inputPassword a {
     display: inline-block;
     width: 50px;
     height: 20px;
 }
 
-#inputAccount input,#inputPassword input{
+#inputAccount input,
+#inputPassword input {
     display: inline-block;
     width: 300px;
     height: 20px;
 }
 
-#loginButton{
+#loginButton {
     margin-top: 20px;
     width: 50px;
     margin-left: 820px;

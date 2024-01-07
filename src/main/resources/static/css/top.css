@@ -1,8 +1,8 @@
-#selection table{
+#selection table {
     height: 70px;
 }
 
-#selection table tr td{
+#selection table tr td {
     width: 200px;
     height: 70px;
     text-align: center;
@@ -10,6 +10,6 @@
     font-size: 30px;
 }
 
-#selection table tr td:hover{
+#selection table tr td:hover {
     background-color: aquamarine;
 }
