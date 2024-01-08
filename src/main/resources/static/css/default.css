@@ -15,8 +15,14 @@ body {
     text-align: center;
 }
 
-#page-header-top > div {
-    flex-grow: 1;
+#page-header-logo {
+    flex-grow: 2;
+}
+
+#page-header-logo img {
+    max-width: 300px;
+    width: 100%;
+    height: 72px;
 }
 
 #page-header-welcome {
@@ -27,9 +33,14 @@ body {
 }
 
 #page-header-account {
+    flex-grow: 1;
     display: flex;
     justify-content: space-evenly;
     align-items: center;
+}
+
+#page-header-account > a {
+    margin: 0 16px;
 }
 
 #navbar {
@@ -37,16 +48,90 @@ body {
     font-size: 24px;
     display: flex;
     align-items: center;
+    overflow-x: auto;
 }
 
 #navbar > a {
     margin: 2px;
     padding: 12px 2em;
-    transition-duration: 0.1s;
+    transition: background-color 0.1s;
     color: white;
     text-decoration: none;
+    white-space: nowrap;
 }
 
 #navbar > a:hover {
     background-color: #9bd;
+}
+
+#banner img {
+    width: 100%;
+}
+
+#rank-list-container, .rank-list-group {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.rank-list-group {
+    flex: 1 1 500px;
+}
+
+.rank-list-group > div {
+    flex: 1 1 200px;
+    margin: 4px;
+    padding: 4px 8px;
+}
+
+#rank-list-overview {
+    background-color: #f84;
+}
+
+#rank-list-weekly {
+    background-color: #af2;
+}
+
+#rank-list-monthly {
+    background-color: #6fd;
+}
+
+#rank-list-likes {
+    background-color: #8ac;
+}
+
+@media screen and (max-width: 1000px) {
+    #navbar > a {
+        padding: 8px 1.5em;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    #page-header-welcome {
+        font-size: 24px;
+    }
+
+    #navbar > a {
+        padding: 6px 1em;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    #page-header-welcome {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    #navbar {
+        font-size: 20px;
+    }
+    
+    #page-header-logo {
+        text-align: left;
+    }
+
+    #page-header-logo img {
+        max-width: 200px;
+        height: 56px;
+    }
 }
