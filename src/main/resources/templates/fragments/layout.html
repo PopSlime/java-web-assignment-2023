@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width" />
     <link rel="stylesheet" href="/css/default.css" />
     <script src="https://cdnjs.loli.net/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <title th:include=":: #page-title" th:text="#{page.title}">电影网</title>
+    <title><span th:include=":: #page-title" th:remove="tag"></span> - [[#{page.title}]]</title>
 </head>
 <body>
 <div id="page-header">
