@@ -158,6 +158,56 @@ body {
 }
 
 /**
+ * Account
+ */
+
+#login-form {
+    margin: 48px auto;
+    border: solid 2px gray;
+    border-radius: 4px;
+    padding: 36px;
+    max-width: 640px;
+}
+
+#welcome {
+    text-align: center;
+    font-size: 30px;
+}
+
+#login-form table {
+    margin: auto;
+    border-spacing: 0.5em;
+}
+
+#login-form label {
+    text-align: right;
+    display: block;
+    width: 100%;
+}
+
+#login-form input {
+    display: block;
+    margin: 0.5em auto;
+    width: 300px;
+    height: 20px;
+}
+
+#login-form .button-submit {
+    background-color: #48c;
+    color: white;
+    border-radius: 2px;
+    border: none;
+    width: 96px;
+    height: 32px;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    align-items: center;
+}
+
+/**
  * Generic
  */
 

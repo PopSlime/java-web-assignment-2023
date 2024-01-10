@@ -1,23 +1,24 @@
 <!DOCTYPE html>
-<html lang="zh-cn" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<html xmlns:th="http://www.thymeleaf.org" th:include="/fragments/layout.html :: layout" lang="zh" th:lang="#{lang}">
 <head>
-    <meta charset="UTF-8"/>
-    <meta http-equiv="Content-type" content="text/html; charset=UTF-8"/>
-    <link rel="stylesheet" href="/css/login.css">
-    <script type="text/javascript" src="/js/jquery-1.4.2.js"></script>
-    <title>登录—电影网</title>
+    <title id="page-title">[[#{account.login}]]</title>
 </head>
 <body>
-<div id="top" th:insert="top.html"></div>
-<div id="welcome">欢迎登录电影网</div>
-
-<div id="inputAccount">
-    <a>账户:</a><input type="text" id="account" name="text-input">
-</div>
-<div id="inputPassword">
-    <a>密码:</a><input type="text" id="password" name="text-input">
-</div>
-<button id="loginButton">登录</button>
-
+<main id="page-content">
+    <form method="post" id="login-form">
+        <div id="welcome" th:text="#{account.login.welcome}">欢迎登录电影网</div>
+        <table>
+            <tr>
+                <td><label for="account" th:text="#{account}">账户</label></td>
+                <td><input type="text" id="account" name="account" /></td>
+            </tr>
+            <tr>
+                <td><label for="password" th:text="#{account.password}">密码</label></td>
+                <td><input type="password" id="password" name="password" /></td>
+            </tr>
+        </table>
+        <input type="submit" class="button-submit" value="登录" th:value="#{account.login}" />
+    </form>
+</main>
 </body>
 </html>
