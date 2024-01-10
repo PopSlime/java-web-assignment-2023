@@ -10,7 +10,7 @@
 <body>
 <div id="page-header">
     <div id="page-header-top">
-        <div id="page-header-logo"><a href="/"><img src="/img/icon.jpg" alt="电影网" th:alt="#{page.title}"></a></div>
+        <div id="page-header-logo"><a th:href="@{/}"><img src="/img/icon.jpg" alt="电影网" th:alt="#{page.title}" /></a></div>
         <div id="page-header-welcome" th:text="#{page.welcome}">欢迎来到电影网！</div>
         <div id="page-header-account">
             <a th:text="#{account.login}">登录</a>
@@ -19,8 +19,8 @@
     </div>
 
     <nav id="navbar">
-        <a href="/" th:text="#{page.home}">首页</a>
-        <a th:text="#{movie}">电影</a>
+        <a th:href="@{/}" th:text="#{page.home}">首页</a>
+        <a th:href="@{/index}" th:text="#{movie}">电影</a>
         <a th:text="#{region.hong_kong}">香港</a>
         <a th:text="#{region.western}">欧美</a>
         <a th:text="#{region.mainland}">内地</a>
