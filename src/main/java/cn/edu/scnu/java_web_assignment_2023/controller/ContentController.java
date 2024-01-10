@@ -7,7 +7,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class ContentController {
     @GetMapping("/")
-    public String index(Model model) {
+    public String home(Model model) {
         return "/home";
+    }
+
+    @GetMapping("/index")
+    public String index(Model model) {
+        return "/index";
     }
 }

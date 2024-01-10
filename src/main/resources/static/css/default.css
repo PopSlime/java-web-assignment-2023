@@ -64,6 +64,10 @@ body {
     background-color: #9bd;
 }
 
+/**
+ * Home
+ */
+
 #banner img {
     width: 100%;
 }
@@ -98,6 +102,106 @@ body {
 #rank-list-review {
     background-color: #8ac;
 }
+
+/**
+ * Index
+ */
+
+#index-filter-container {
+    margin: 12px 0;
+    width: 100%;
+}
+
+#index-filters {
+    width: 100%;
+    text-align: center;
+}
+
+#index-filters td:first-child {
+    background-color: #ddd;
+    width: 120px;
+}
+
+#index-filters input {
+    display: none;
+}
+
+#index-filters label {
+    margin: 0 2px;
+    padding: 0 0.5em;
+    min-width: 80px;
+    height: 32px;
+    cursor: pointer;
+}
+
+#index-filters label:hover {
+    background-color: #eee;
+}
+
+#index-filters label:has(:checked) {
+    background-color: #ddd;
+}
+
+#index-filters span {
+    vertical-align: middle;
+}
+
+#search-box-container {
+    display: flex;
+    justify-content: center;
+    margin: 8px auto;
+    padding: 0 8px;
+}
+
+#index-list {
+    list-style: none;
+    padding: 0;
+}
+
+#index-list li {
+    margin: 4px;
+}
+
+/**
+ * Generic
+ */
+
+.search-box {
+    max-width: 480px;
+    width: 100%;
+    height: 32px;
+}
+
+.search-button {
+    background-color: #48c;
+    color: white;
+    cursor: pointer;
+    margin-left: 8px;
+    border-radius: 2px;
+    border: solid 1px #68a;
+    padding: 0 1em;
+    height: 32px;
+}
+
+.align-middle > * {
+    vertical-align: middle;
+}
+
+.flex-list {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.grid-list {
+    display: grid;
+    justify-content: center;
+    justify-items: center;
+}
+
+/**
+ * Responsive
+ */
 
 @media screen and (max-width: 1000px) {
     #navbar > a {
