@@ -72,16 +72,11 @@ body {
     width: 100%;
 }
 
-#rank-list-container, .rank-list-group {
-    display: flex;
-    flex-wrap: wrap;
-}
-
-.rank-list-group {
+#rank-list-container > div {
     flex: 1 1 500px;
 }
 
-.rank-list-group > div {
+#rank-list-container > div > div {
     flex: 1 1 200px;
     margin: 4px;
     padding: 4px 8px;
