@@ -39,6 +39,7 @@ public class WebMvcConfiguration implements WebMvcConfigurer {
         ChainedLocaleResolver resolver = new ChainedLocaleResolver();
 
         CookieLocaleResolver cookieResolver = new CookieLocaleResolver();
+        cookieResolver.setCookieName("lang");
         cookieResolver.setDefaultLocale(ChainedLocaleResolver.FALLBACK);
         resolver.add(cookieResolver);
 
