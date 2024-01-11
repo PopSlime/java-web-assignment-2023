@@ -16,6 +16,11 @@ public class ContentController {
         return "/index";
     }
 
+    @GetMapping("/filmDetail")
+    public String filmDetail(Model model) {
+        return "/filmDetail";
+    }
+
     @GetMapping("/login")
     public String login(Model model) {
         return "/login";
