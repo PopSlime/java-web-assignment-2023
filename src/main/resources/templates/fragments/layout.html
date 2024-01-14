@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="zh" th:lang="#{lang}" th:fragment="layout">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" href="/css/default.css" />
+    <script src="https://cdnjs.loli.net/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <title><span th:include=":: #page-title" th:remove="tag"></span> - [[#{page.title}]]</title>
+</head>
+<body>
+<div id="page-header">
+    <div id="page-header-top">
+        <div id="page-header-logo"><a th:href="@{/}"><img src="/img/icon.jpg" alt="电影网" th:alt="#{page.title}" /></a></div>
+        <div id="page-header-welcome" th:text="#{page.welcome}">欢迎来到电影网！</div>
+        <div id="page-header-account">
+            <a th:text="#{account.login}" th:href="@{/login}">登录</a>
+            <a th:text="#{account.signup}" th:href="@{/signup}">注册</a>
+        </div>
+    </div>
+
+    <nav id="navbar">
+        <a th:href="@{/}" th:text="#{page.home}">首页</a>
+        <a th:href="@{/index}" th:text="#{movie}">电影</a>
+        <a th:text="#{region.hong_kong}">香港</a>
+        <a th:text="#{region.western}">欧美</a>
+        <a th:text="#{region.mainland}">内地</a>
+    </nav>
+</div>
+
+<div id="page-main-container">
+    <main id="page-main" th:include=":: #page-content"></main>
+</div>
+</body>
+</html>

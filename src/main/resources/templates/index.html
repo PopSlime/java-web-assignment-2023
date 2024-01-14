@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:include="/fragments/layout.html :: layout" lang="zh" th:lang="#{lang}">
+<head>
+    <title id="page-title">[[#{page.index}]]</title>
+</head>
+<body>
+<main id="page-content">
+    <form id="index-filter-container">
+        <div id="search-box-container">
+            <input type="search" name="keyword" class="search-box" />
+            <input type="submit" value="搜索" th:value="#{search}" class="search-button" />
+        </div>
+        <table id="index-filters">
+            <tr>
+                <td style="color: #a62;" th:text="#{rank}">排行</td>
+                <td>
+                    <div class="flex-list">
+                        <label><input type="radio" name="sort" /><span th:text="#{rank.weekly}">本周排行</span></label>
+                        <label><input type="radio" name="sort" /><span th:text="#{rank.monthly}">本月排行</span></label>
+                        <label><input type="radio" name="sort" /><span th:text="#{rank.review}">好评排行</span></label>
+                        <label><input type="radio" name="sort" checked /><span th:text="#{rank.overview}">全部排行</span></label>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td style="color: #4a4;" th:text="#{filter.type}">按类型</td>
+                <td>
+                    <div class="flex-list">
+                        <label><input type="checkbox" name="category" /><span>爱情</span></label>
+                        <label><input type="checkbox" name="category" /><span>动作</span></label>
+                        <label><input type="checkbox" name="category" /><span>喜剧</span></label>
+                        <label><input type="checkbox" name="category" /><span>惊悚</span></label>
+                        <label><input type="checkbox" name="category" /><span>恐怖</span></label>
+                        <label><input type="checkbox" name="category" /><span>悬疑</span></label>
+                        <label><input type="checkbox" name="category" /><span>科幻</span></label>
+                        <label><input type="checkbox" name="category" /><span>动画</span></label>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td style="color: #066;" th:text="#{filter.region}">按地区</td>
+                <td>
+                    <div class="flex-list">
+                        <label><input type="checkbox" name="region" /><span>内地</span></label>
+                        <label><input type="checkbox" name="region" /><span>港台</span></label>
+                        <label><input type="checkbox" name="region" /><span>欧美</span></label>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td style="color: #aa6;" th:text="#{filter.genre}">按体裁</td>
+                <td>
+                    <div class="flex-list">
+                        <label><input type="checkbox" name="genre" /><span>抗日</span></label>
+                        <label><input type="checkbox" name="genre" /><span>间谍</span></label>
+                        <label><input type="checkbox" name="genre" /><span>硬汉</span></label>
+                        <label><input type="checkbox" name="genre" /><span>枪战</span></label>
+                        <label><input type="checkbox" name="genre" /><span>杀手</span></label>
+                        <label><input type="checkbox" name="genre" /><span>穿越</span></label>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </form>
+
+    <div id="index-list-container">
+        <ul id="index-list" class="grid-list" style="grid-template-columns: repeat(auto-fill, minmax(240px, max-content))">
+            <li>
+                <div><img src="/img/film/movie1.png"></div>
+                <a th:href="@{/filmDetail}">匆匆那年</a>
+            </li>
+            <li>
+                <div><img src="/img/film/movie1.png"></div>
+                <a>匆匆那年</a>
+            </li>
+            <li>
+                <div><img src="/img/film/movie1.png"></div>
+                <a>匆匆那年</a>
+            </li>
+            <li>
+                <div><img src="/img/film/movie1.png"></div>
+                <a>匆匆那年</a>
+            </li>
+        </ul>
+        <script src="/js/index_pager.js"></script>
+    </div>
+</main>
+</body>
+</html>
