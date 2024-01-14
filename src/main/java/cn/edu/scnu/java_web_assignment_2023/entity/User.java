@@ -10,4 +10,5 @@ public class User {
     @TableId
     private String account;
     private byte[] password;
+    private boolean isVip;
 }
