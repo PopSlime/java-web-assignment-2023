@@ -1,4 +1,4 @@
-package cn.edu.scnu.java_web_assignment_2023;
+package cn.edu.scnu.java_web_assignment_2023.controller;
 
 import cn.edu.scnu.java_web_assignment_2023.service.AccountActionResult;
 import cn.edu.scnu.java_web_assignment_2023.service.LoginService;

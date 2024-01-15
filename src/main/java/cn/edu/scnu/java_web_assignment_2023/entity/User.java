@@ -8,7 +8,7 @@ import lombok.Data;
 @TableName(value = "user")
 public class User {
     @TableId
-    private String account;
+    private String userId;
     private byte[] password;
     private boolean isVip;
 }
