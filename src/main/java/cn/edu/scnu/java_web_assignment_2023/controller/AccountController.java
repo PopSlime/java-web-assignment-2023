@@ -24,7 +24,7 @@ public class AccountController {
     public String login(String account, String password, Model model) {
         AccountActionResult result = service.authenticateUser(account, password);
         if (result == AccountActionResult.SUCCESS)
-            return "redirect:/home"; // 回到主页面
+            return "redirect:/"; // 回到主页面
         model.addAttribute("error", "account.error." + result.getLocaleKey());
         return "login";
     }
@@ -38,7 +38,7 @@ public class AccountController {
     public String doSignup(String account, String password, Model model) {
         AccountActionResult result = service.signUp(account, password);
         if (result == AccountActionResult.SUCCESS)
-            return "redirect:/home"; // 回到主页面
+            return "redirect:/"; // 回到主页面
         model.addAttribute("error", "account.error." + result.getLocaleKey());
         return "signup";
     }
