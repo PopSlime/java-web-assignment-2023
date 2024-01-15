@@ -28,4 +28,18 @@ public class AccountController {
         model.addAttribute("error", "account.error." + result.getLocaleKey());
         return "login";
     }
+
+    @GetMapping("/signup")
+    public String showSignup(Model model) {
+        return "signup";
+    }
+
+    @PostMapping("/signup")
+    public String doSignup(String account, String password, Model model) {
+        AccountActionResult result = service.signUp(account, password);
+        if (result == AccountActionResult.SUCCESS)
+            return "redirect:/home"; // 回到主页面
+        model.addAttribute("error", "account.error." + result.getLocaleKey());
+        return "signup";
+    }
 }

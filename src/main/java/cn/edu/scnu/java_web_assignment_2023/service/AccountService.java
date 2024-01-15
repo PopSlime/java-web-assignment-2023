@@ -30,6 +30,22 @@ public class AccountService {
         return AccountActionResult.SUCCESS;
     }
 
+    public AccountActionResult signUp(String account, String password) {
+        User user = new User();
+        user.setUserId(account);
+        try {
+            user.setPassword(getPasswordHash(password));
+        } catch (NoSuchAlgorithmException e) {
+            throw new RuntimeException(e);
+        }
+
+        int result = mapper.insert(user);
+
+        if (result == 0)
+            return AccountActionResult.DUPLICATE_ACCOUNT;
+        return AccountActionResult.SUCCESS;
+    }
+
     byte[] getPasswordHash(String password) throws NoSuchAlgorithmException {
         MessageDigest digest = MessageDigest.getInstance("SHA3-256");
         return digest.digest(password.getBytes(StandardCharsets.UTF_8));

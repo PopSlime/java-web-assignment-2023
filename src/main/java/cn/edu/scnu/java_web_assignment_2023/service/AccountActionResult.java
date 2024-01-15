@@ -5,6 +5,7 @@ import lombok.Getter;
 @Getter
 public enum AccountActionResult {
     SUCCESS("success"),
+    DUPLICATE_ACCOUNT("duplicate_account"),
     MISSING_ACCOUNT("missing_account"),
     INCORRECT_PASSWORD("incorrect_password");
 
