@@ -1,7 +1,7 @@
 package cn.edu.scnu.java_web_assignment_2023.service;
 
 import cn.edu.scnu.java_web_assignment_2023.entity.User;
-import cn.edu.scnu.java_web_assignment_2023.mapper.LoginMapper;
+import cn.edu.scnu.java_web_assignment_2023.mapper.AccountMapper;
 import org.springframework.stereotype.Service;
 
 import java.nio.charset.StandardCharsets;
@@ -10,15 +10,15 @@ import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
 
 @Service
-public class LoginService {
-    LoginMapper loginMapper;
+public class AccountService {
+    AccountMapper mapper;
 
-    public LoginService(LoginMapper mapper) {
-        loginMapper = mapper;
+    public AccountService(AccountMapper mapper) {
+        this.mapper = mapper;
     }
 
     public AccountActionResult authenticateUser(String account, String password) {
-        User user = loginMapper.selectById(account);
+        User user = mapper.selectById(account);
         if (user == null)
             return AccountActionResult.MISSING_ACCOUNT;
         try {
