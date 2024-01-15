@@ -47,7 +47,7 @@ public class AccountService {
     }
 
     byte[] getPasswordHash(String password) throws NoSuchAlgorithmException {
-        MessageDigest digest = MessageDigest.getInstance("SHA3-256");
+        MessageDigest digest = MessageDigest.getInstance("SHA-256");
         return digest.digest(password.getBytes(StandardCharsets.UTF_8));
     }
 }
