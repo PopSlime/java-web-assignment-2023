@@ -7,7 +7,8 @@ public enum AccountActionResult {
     SUCCESS("success"),
     DUPLICATE_ACCOUNT("duplicate_account"),
     MISSING_ACCOUNT("missing_account"),
-    INCORRECT_PASSWORD("incorrect_password");
+    INCORRECT_PASSWORD("incorrect_password"),
+    INTERNAL("internal");
 
     private final String localeKey;
 

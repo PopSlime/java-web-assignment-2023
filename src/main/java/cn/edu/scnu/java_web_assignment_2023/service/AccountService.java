@@ -31,7 +31,11 @@ public class AccountService {
     }
 
     public AccountActionResult signUp(String account, String password) {
-        User user = new User();
+        User user = mapper.selectById(account);
+        if (user != null)
+            return AccountActionResult.DUPLICATE_ACCOUNT;
+
+        user = new User();
         user.setUserId(account);
         try {
             user.setPassword(getPasswordHash(password));
@@ -42,7 +46,7 @@ public class AccountService {
         int result = mapper.insert(user);
 
         if (result == 0)
-            return AccountActionResult.DUPLICATE_ACCOUNT;
+            return AccountActionResult.INTERNAL;
         return AccountActionResult.SUCCESS;
     }
 
