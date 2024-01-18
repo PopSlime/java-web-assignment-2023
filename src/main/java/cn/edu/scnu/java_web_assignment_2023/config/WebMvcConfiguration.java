@@ -69,11 +69,10 @@ public class WebMvcConfiguration implements WebMvcConfigurer {
         public LocaleContext resolveLocaleContext(HttpServletRequest request) {
             for (LocaleResolver resolver : resolvers) {
                 if (resolver instanceof LocaleContextResolver) {
-                    LocaleContext localeContext = ((LocaleContextResolver)resolver).resolveLocaleContext(request);
+                    LocaleContext localeContext = ((LocaleContextResolver) resolver).resolveLocaleContext(request);
                     Locale locale = localeContext.getLocale();
                     if (locale != null && !locale.equals(FALLBACK)) return localeContext;
-                }
-                else {
+                } else {
                     Locale locale = resolver.resolveLocale(request);
                     if (!locale.equals(FALLBACK)) return new SimpleLocaleContext(locale);
                 }
@@ -85,7 +84,7 @@ public class WebMvcConfiguration implements WebMvcConfigurer {
         public void setLocaleContext(HttpServletRequest request, HttpServletResponse response, LocaleContext localeContext) {
             if (targetResolver == null) return;
             if (targetResolver instanceof LocaleContextResolver)
-                ((LocaleContextResolver)targetResolver).setLocaleContext(request, response, localeContext);
+                ((LocaleContextResolver) targetResolver).setLocaleContext(request, response, localeContext);
             else
                 targetResolver.setLocale(request, response, localeContext.getLocale());
         }
