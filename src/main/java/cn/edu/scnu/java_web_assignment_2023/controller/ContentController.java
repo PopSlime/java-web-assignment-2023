@@ -1,13 +1,24 @@
 package cn.edu.scnu.java_web_assignment_2023.controller;
 
+import cn.edu.scnu.java_web_assignment_2023.service.ContentService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class ContentController {
+    ContentService service;
+
+    public ContentController(ContentService service) {
+        this.service = service;
+    }
+
     @GetMapping("/")
     public String home(Model model) {
+        model.addAttribute("overallRankingList", service.getFilmsOrderedByRanking("total_heat"));
+        model.addAttribute("weeklyRankingList", service.getFilmsOrderedByRanking("weekly_heat"));
+        model.addAttribute("monthlyRankingList", service.getFilmsOrderedByRanking("monthly_heat"));
+        model.addAttribute("reviewRankingList", service.getFilmsOrderedByRanking("rating"));
         return "/home";
     }
 
