@@ -1,5 +1,6 @@
 package cn.edu.scnu.java_web_assignment_2023.controller;
 
+import cn.edu.scnu.java_web_assignment_2023.entity.User;
 import cn.edu.scnu.java_web_assignment_2023.service.AccountActionResult;
 import cn.edu.scnu.java_web_assignment_2023.service.AccountService;
 import org.springframework.stereotype.Controller;
@@ -10,9 +11,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 @Controller
 public class AccountController {
     AccountService service;
+    User user;
 
-    public AccountController(AccountService service) {
+    public AccountController(AccountService service, User user) {
         this.service = service;
+        this.user = user;
     }
 
     @GetMapping("/login")
@@ -23,8 +26,10 @@ public class AccountController {
     @PostMapping("/login")
     public String login(String account, String password, Model model) {
         AccountActionResult result = service.authenticateUser(account, password);
-        if (result.isSuccess())
+        if (result.isSuccess()) {
+            result.getUser().copyTo(user);
             return "redirect:/"; // 回到主页面
+        }
         model.addAttribute("error", "account.error." + result.getLocaleKey());
         return "login";
     }
@@ -41,5 +46,11 @@ public class AccountController {
             return "redirect:/"; // 回到主页面
         model.addAttribute("error", "account.error." + result.getLocaleKey());
         return "signup";
+    }
+
+    @GetMapping("/logout")
+    public String logout() {
+        user.reset();
+        return "redirect:/"; // 回到主页面
     }
 }
