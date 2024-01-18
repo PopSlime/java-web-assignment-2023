@@ -79,23 +79,10 @@ body {
 #rank-list-container > div > div {
     flex: 1 1 200px;
     margin: 4px;
+}
+
+#rank-list-container > div > div > div {
     padding: 4px 8px;
-}
-
-#rank-list-overview {
-    background-color: #f84;
-}
-
-#rank-list-weekly {
-    background-color: #af2;
-}
-
-#rank-list-monthly {
-    background-color: #6fd;
-}
-
-#rank-list-review {
-    background-color: #ace;
 }
 
 /**
