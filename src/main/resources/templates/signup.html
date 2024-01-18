@@ -7,6 +7,7 @@
 <main id="page-content">
     <form method="post" id="login-form">
         <div id="welcome" th:text="#{account.signup}">注册</div>
+        <div class="error-message" th:if="${error}" th:text="#{${error}}"></div>
         <table>
             <tr>
                 <td><label for="account" th:text="#{account}">账户</label></td>
@@ -17,11 +18,13 @@
                 <td><input type="password" id="password" name="password" /></td>
             </tr>
             <tr>
-                <td><label for="confirm_password" th:text="#{account.password.confirm}">确认密码</label></td>
-                <td><input type="password" id="confirm_password" /></td>
+                <td><label for="confirm-password" th:text="#{account.password.confirm}">确认密码</label></td>
+                <td><input type="password" id="confirm-password" /></td>
             </tr>
         </table>
         <input type="submit" class="button-submit" value="注册" th:value="#{account.signup}" />
+        <div class="client-message" id="msg-mismatched-password" th:text="#{account.error.mismatched_password}">两次输入的密码不匹配</div>
+        <script src="/js/signup.js"></script>
     </form>
 </main>
 </body>
