@@ -27,7 +27,7 @@ public class AccountService {
         } catch (NoSuchAlgorithmException e) {
             throw new RuntimeException(e);
         }
-        return AccountActionResult.SUCCESS;
+        return new AccountActionResult(user);
     }
 
     public AccountActionResult signUp(String account, String password) {
@@ -47,7 +47,7 @@ public class AccountService {
 
         if (result == 0)
             return AccountActionResult.INTERNAL;
-        return AccountActionResult.SUCCESS;
+        return new AccountActionResult(user);
     }
 
     byte[] getPasswordHash(String password) throws NoSuchAlgorithmException {

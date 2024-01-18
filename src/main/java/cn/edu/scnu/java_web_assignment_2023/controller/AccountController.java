@@ -23,7 +23,7 @@ public class AccountController {
     @PostMapping("/login")
     public String login(String account, String password, Model model) {
         AccountActionResult result = service.authenticateUser(account, password);
-        if (result == AccountActionResult.SUCCESS)
+        if (result.isSuccess())
             return "redirect:/"; // 回到主页面
         model.addAttribute("error", "account.error." + result.getLocaleKey());
         return "login";
@@ -37,7 +37,7 @@ public class AccountController {
     @PostMapping("/signup")
     public String doSignup(String account, String password, Model model) {
         AccountActionResult result = service.signUp(account, password);
-        if (result == AccountActionResult.SUCCESS)
+        if (result.isSuccess())
             return "redirect:/"; // 回到主页面
         model.addAttribute("error", "account.error." + result.getLocaleKey());
         return "signup";
