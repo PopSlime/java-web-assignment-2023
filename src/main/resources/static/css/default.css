@@ -211,6 +211,15 @@ body {
  * Generic
  */
 
+.client-message {
+    display: none;
+}
+
+.error-message {
+    color: red;
+    text-align: center;
+}
+
 .search-box {
     max-width: 480px;
     width: 100%;

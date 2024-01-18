@@ -13,8 +13,10 @@
         <div id="page-header-logo"><a th:href="@{/}"><img src="/img/icon.jpg" alt="电影网" th:alt="#{page.title}" /></a></div>
         <div id="page-header-welcome" th:text="#{page.welcome}">欢迎来到电影网！</div>
         <div id="page-header-account">
-            <a th:text="#{account.login}" th:href="@{/login}">登录</a>
-            <a th:text="#{account.signup}" th:href="@{/signup}">注册</a>
+            <a th:text="#{account.login}" th:href="@{/login}" th:unless="${user.userId != null}">登录</a>
+            <a th:text="#{account.signup}" th:href="@{/signup}" th:unless="${user.userId != null}">注册</a>
+            <span th:text="${user.userId}" th:if="${user.userId != null}">USER</span>
+            <a th:text="#{account.logout}" th:href="@{/logout}" th:if="${user.userId != null}">登出</a>
         </div>
     </div>
 

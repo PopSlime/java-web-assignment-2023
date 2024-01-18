@@ -20,14 +20,4 @@ public class ContentController {
     public String filmDetail(Model model) {
         return "/filmDetail";
     }
-
-    @GetMapping("/login")
-    public String login(Model model) {
-        return "/login";
-    }
-
-    @GetMapping("/signup")
-    public String signup(Model model) {
-        return "/signup";
-    }
 }
