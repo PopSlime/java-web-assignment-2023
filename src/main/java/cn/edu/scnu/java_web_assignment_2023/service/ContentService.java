@@ -38,7 +38,7 @@ public class ContentService {
         );
     }
 
-    public Page<LocalizedFilm> getFilmsPaged(int page, int pageSize, String ranking, String keyword, int[] ...types) {
+    public Page<LocalizedFilm> getFilmsPaged(int page, int pageSize, String ranking, String keyword, int[]... types) {
         String FILM_PREFIX = "film";
         MPJLambdaWrapper<Film> wrapper = new MPJLambdaWrapper<Film>(FILM_PREFIX)
                 .selectAll(Film.class, FILM_PREFIX)
@@ -48,17 +48,15 @@ public class ContentService {
         StringBuilder sqb = null;
         for (int[] tl : types) {
             if (tl == null || tl.length == 0) continue;
-            String sq = " (select count(type_id) from cte where type_id in ("
-                    + Arrays.stream(tl).mapToObj(Integer::toString).collect(Collectors.joining(", "))
-                    + ")) > 0";
             if (sqb == null) {
                 sqb = new StringBuilder(" with cte as (select type_id from film_type where film_id = "
                         + FILM_PREFIX + ".film_id) select 1 where");
-            }
-            else {
+            } else {
                 sqb.append(" and");
             }
-            sqb.append(sq);
+            sqb.append(" (select count(type_id) from cte where type_id in (");
+            sqb.append(Arrays.stream(tl).mapToObj(Integer::toString).collect(Collectors.joining(", ")));
+            sqb.append(")) > 0");
         }
         if (sqb != null) {
             wrapper.apply(sqb.toString());
