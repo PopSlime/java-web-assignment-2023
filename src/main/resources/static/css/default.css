@@ -8,6 +8,19 @@ body {
     max-width: 1600px;
 }
 
+a {
+    text-decoration: none;
+    color: #26a;
+}
+
+a:visited {
+    color: #62a;
+}
+
+a:hover {
+    color: #a62;
+}
+
 #page-header-top {
     display: flex;
     justify-content: space-between;
