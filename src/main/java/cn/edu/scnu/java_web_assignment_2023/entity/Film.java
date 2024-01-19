@@ -1,5 +1,6 @@
 package cn.edu.scnu.java_web_assignment_2023.entity;
 
+import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 
@@ -8,7 +9,8 @@ import java.util.Date;
 @Data
 @TableName(value = "film")
 public class Film {
-    private int filmId;
+    @TableId
+    private Integer filmId;
     private int nameId;
     private String picture;
     private int descId;
