@@ -25,6 +25,7 @@ public class ContentService {
         return filmMapper.selectJoinList(
                 LocalizedFilm.class,
                 new MPJLambdaWrapper<Film>()
+                        .selectAll(Film.class)
                         .selectAs(Name::getValue, "name")
                         .orderByDesc(ranking)
                         .last("limit " + limit)

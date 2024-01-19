@@ -85,6 +85,37 @@ body {
     padding: 4px 8px;
 }
 
+@counter-style rank {
+    system: numeric;
+    symbols: "0" "1" "2" "3" "4" "5" "6" "7" "8" "9";
+    suffix: "  ";
+}
+
+#rank-list-container ol {
+    list-style: rank;
+}
+
+#rank-list-container li {
+	margin: 0.5em;
+}
+
+#rank-list-container ::marker {
+	font-size: large;
+}
+
+#rank-list-container li div {
+	display: flex;
+}
+
+#rank-list-container li a {
+    flex: 1;
+    text-wrap: nowrap;
+    text-overflow: ellipsis;
+    overflow-x: hidden;
+    margin-right: 0.5em;
+    width: 0;
+}
+
 /**
  * Index
  */
