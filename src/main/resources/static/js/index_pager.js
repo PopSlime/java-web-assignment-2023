@@ -49,6 +49,11 @@ function updateFilters() {
 }
 updateFilters();
 
+$("input[name=sort]").on("change", () => updateFilters());
+$("input[name=type0]").on("change", () => updateFilters());
+$("input[name=type1]").on("change", () => updateFilters());
+$("input[name=type2]").on("change", () => updateFilters());
+
 $("#index-filter-container").on("submit", function (e) {
     e.preventDefault();
     updateFilters();
