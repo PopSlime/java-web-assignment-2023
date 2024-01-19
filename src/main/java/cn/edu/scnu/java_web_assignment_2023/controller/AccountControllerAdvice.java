@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 
 @ControllerAdvice
 public class AccountControllerAdvice {
-    User user;
+    private final User user;
 
     public AccountControllerAdvice(User user) {
         this.user = user;

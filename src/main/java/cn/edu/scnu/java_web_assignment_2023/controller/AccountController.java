@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class AccountController {
-    AccountService service;
-    User user;
+    private final AccountService service;
+    private final User user;
 
     public AccountController(AccountService service, User user) {
         this.service = service;

@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class ContentController {
-    ContentService service;
+    private final ContentService service;
 
     public ContentController(ContentService service) {
         this.service = service;

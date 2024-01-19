@@ -11,7 +11,7 @@ import java.util.Arrays;
 
 @Service
 public class AccountService {
-    AccountMapper mapper;
+    private final AccountMapper mapper;
 
     public AccountService(AccountMapper mapper) {
         this.mapper = mapper;
