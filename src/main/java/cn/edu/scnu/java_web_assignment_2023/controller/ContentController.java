@@ -24,6 +24,7 @@ public class ContentController {
 
     @GetMapping("/index")
     public String index(Model model) {
+        model.addAttribute("types", service.getFilmTypes());
         return "/index";
     }
 
