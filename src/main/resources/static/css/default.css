@@ -198,6 +198,7 @@ a:hover {
 
 #index-list li {
     margin: 4px;
+    min-width: 90%;
 }
 
 #index-list img {
