@@ -5,5 +5,5 @@ import com.github.yulichang.base.MPJBaseMapper;
 import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
-public interface FilmTypeMapper  extends MPJBaseMapper<FilmType> {
+public interface FilmTypeMapper extends MPJBaseMapper<FilmType> {
 }

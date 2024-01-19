@@ -40,11 +40,12 @@ public class ContentService {
 
     /**
      * 分页查询电影。
-     * @param page 从 1 开始编号的分页编号。
+     *
+     * @param page     从 1 开始编号的分页编号。
      * @param pageSize 一页的电影数量。
-     * @param ranking 排序依据。
-     * @param keyword 筛选的关键词。
-     * @param types 筛选的类型。
+     * @param ranking  排序依据。
+     * @param keyword  筛选的关键词。
+     * @param types    筛选的类型。
      * @return 从数据库中按所给条件查询到的电影列表。
      */
     public Page<LocalizedFilm> getFilmsPaged(int page, int pageSize, String ranking, String keyword, int[]... types) {
