@@ -179,6 +179,18 @@ a:hover {
     padding: 0 8px;
 }
 
+#index-pager {
+    text-align: center;
+}
+
+#index-pager a {
+    padding: 0 0.5em;
+}
+
+#pager-current-page {
+    width: 4em;
+}
+
 #index-list {
     list-style: none;
     padding: 0;

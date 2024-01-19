@@ -6,31 +6,74 @@ const pageSize = pageRowCount * pageColumnCount;
 console.log(`Page Size = ${pageSize}`);
 
 const list = $("#index-list");
+let baseUrl = null;
+let currentPage = 1;
+let totalPages = 1;
 
-$("#index-filter-container").on("submit", function (e) {
-    e.preventDefault();
+function setPage(page) {
+    if (page <= 1) page = 1;
+    else if (page > totalPages) page = totalPages;
+    $("#pager-current-page").val(currentPage = page);
+    if (baseUrl) {
+        $.getJSON(`${baseUrl}&page=${page}`, function (data) {
+            list.empty();
+            for (var film of data.records) {
+                list.append(
+                    $("<li>").append(
+                        $("<a>").attr(
+                            "href", `/filmDetail?id=${film.filmId}`
+                        ).append(
+                            $("<div>").append(
+                                $("<img>").attr("src", `/img/film/${film.picture}`)
+                            )
+                        ).append(
+                            $("<span>").text(film.name)
+                        )
+                    )
+                );
+            }
+            $("#pager-total-pages").text(totalPages = data.pages);
+        });
+    }
+}
+
+function updateFilters() {
     const ranking = $("input[name=sort]:checked").val();
     const keyword = $("input[name=keyword]").val();
     let url = `/api/index?pageSize=${pageSize}&ranking=${ranking}&keyword=${keyword}`;
     $("input[name=type0]:checked").each((i, el) => url += `&type0=${$(el).val()}`);
     $("input[name=type1]:checked").each((i, el) => url += `&type1=${$(el).val()}`);
     $("input[name=type2]:checked").each((i, el) => url += `&type2=${$(el).val()}`);
-    $.getJSON(url, function (data) {
-        list.empty();
-        for (var film of data.records) {
-            list.append(
-                $("<li>").append(
-                    $("<a>").attr(
-                        "href", `/filmDetail?id=${film.filmId}`
-                    ).append(
-                        $("<div>").append(
-                            $("<img>").attr("src", `/img/film/${film.picture}`)
-                        )
-                    ).append(
-                        $("<span>").text(film.name)
-                    )
-                )
-            );
-        }
-    });
+    baseUrl = url;
+    setPage(1);
+}
+updateFilters();
+
+$("#index-filter-container").on("submit", function (e) {
+    e.preventDefault();
+    updateFilters();
+});
+
+$("#pager-current-page").on("change", function (e) {
+    setPage(parseInt(this.value));
+});
+
+$("#pager-first-page").on("click", function (e) {
+    setPage(1);
+    return false;
+});
+
+$("#pager-prev-page").on("click", function (e) {
+    setPage(currentPage - 1);
+    return false;
+});
+
+$("#pager-next-page").on("click", function (e) {
+    setPage(currentPage + 1);
+    return false;
+});
+
+$("#pager-last-page").on("click", function (e) {
+    setPage(totalPages);
+    return false;
 });
