@@ -268,7 +268,7 @@ a:hover {
 	position: absolute;
 	width: 100%;
 	max-width: 1600px;
-	height: 100%;
+	height: 480px;
 	z-index: -1;
 }
 
