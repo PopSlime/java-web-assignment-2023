@@ -74,7 +74,7 @@ public class ContentService {
         for (int[] tl : types) {
             if (tl == null || tl.length == 0) continue;
             if (sqb == null) {
-                sqb = new StringBuilder(" with cte as (select type_id from film_type where film_id = "
+                sqb = new StringBuilder("with cte as (select type_id from film_type where film_id = "
                         + FILM_PREFIX + ".film_id) select 1 where");
             } else {
                 sqb.append(" and");
