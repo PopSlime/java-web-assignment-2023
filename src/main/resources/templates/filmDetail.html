@@ -1,12 +1,28 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" th:include="/fragments/layout.html :: layout" lang="zh" th:lang="#{lang}">
 <head>
-    <title id="page-title"></title>
+    <title id="page-title">[[${film.name}]]</title>
 </head>
 <body>
 <main id="page-content">
-    <header>
-
+    <header id="detail">
+        <div id="detail-bg">
+            <div th:style="${'background-image: url(/img/film/' + film.picture + ');'}"></div>
+        </div>
+        <div id="detail-infobox">
+            <img src="/img/null.png" alt="电影名称" th:src="${'/img/film/' + film.picture}" th:alt="${film.name}" />
+            <div id="detail-infobox-entries">
+                <div id="detail-infobox-name" th:text="${film.name}">电影名称</div>
+                <div th:each="scope : ${types}">
+                    <span th:text="#{${'scope.' + scope.key}}">大类</span>
+                    <span th:each="type : ${scope.value}" th:text="${type.name}">类型</span>
+                </div>
+                <div>
+                    <span th:text="#{date}">日期</span>
+                    <span th:text="${#dates.format(film.date, 'yyyy-MM-dd')}">2024-01-20</span>
+                </div>
+            </div>
+        </div>
     </header>
     <section>
 

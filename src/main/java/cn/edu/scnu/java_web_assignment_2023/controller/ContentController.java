@@ -29,7 +29,9 @@ public class ContentController {
     }
 
     @GetMapping("/filmDetail")
-    public String filmDetail(Model model) {
+    public String filmDetail(Model model, int id) {
+        model.addAttribute("film", service.getFilmDetailById(id));
+        model.addAttribute("types", service.getFilmTypesByFilmId(id));
         return "/filmDetail";
     }
 }

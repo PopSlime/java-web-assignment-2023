@@ -7,5 +7,5 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper = true)
 public class LocalizedFilm extends Film {
     private String name;
-    private String desc;
+    private String description;
 }

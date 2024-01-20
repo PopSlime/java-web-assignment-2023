@@ -256,6 +256,74 @@ a:hover {
 }
 
 /**
+ * Details
+ */
+
+#detail {
+    height: 480px;
+}
+
+#detail-bg {
+	overflow: hidden;
+	position: absolute;
+	width: 100%;
+	max-width: 1600px;
+	height: 100%;
+	z-index: -1;
+}
+
+#detail-bg > div {
+    background-size: cover;
+    background-position: center;
+    filter: blur(32px) brightness(0.5);
+    margin: -32px;
+    width: calc(100% + 64px);
+    height: calc(100% + 64px);
+}
+
+#detail-infobox {
+    color: white;
+    display: flex;
+    flex-wrap: wrap;
+    margin: auto;
+    padding: 32px;
+    max-width: 1200px;
+}
+
+#detail-infobox > img {
+	box-shadow: black 0 0 16px;
+}
+
+/* TODO: Respond to width <= 800px */
+
+#detail-infobox-entries {
+    display: flex;
+	flex-direction: column;
+	justify-content: center;
+	flex: 1 1 0;
+    margin: 16px;
+    margin-left: 64px;
+}
+
+#detail-infobox-name {
+    font-weight: bold;
+    font-size: xxx-large;
+}
+
+#detail-infobox-entries > div {
+    margin: 4px 0;
+}
+
+#detail-infobox-entries > div > span {
+    padding: 0 1em;
+}
+
+#detail-infobox-entries > div > span:first-child {
+    border-right: solid 2px gray;
+    padding-left: 0;
+}
+
+/**
  * Generic
  */
 

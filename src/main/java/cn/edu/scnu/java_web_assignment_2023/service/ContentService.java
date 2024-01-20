@@ -3,6 +3,7 @@ package cn.edu.scnu.java_web_assignment_2023.service;
 import cn.edu.scnu.java_web_assignment_2023.entity.*;
 import cn.edu.scnu.java_web_assignment_2023.mapper.FilmMapper;
 import cn.edu.scnu.java_web_assignment_2023.mapper.FilmTypeMapper;
+import cn.edu.scnu.java_web_assignment_2023.mapper.FilmTypeMappingMapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.github.yulichang.wrapper.MPJLambdaWrapper;
 import org.springframework.stereotype.Service;
@@ -16,10 +17,16 @@ import java.util.stream.Collectors;
 public class ContentService {
     private final FilmMapper filmMapper;
     private final FilmTypeMapper filmTypeMapper;
+    private final FilmTypeMappingMapper filmTypeMappingMapper;
 
-    public ContentService(FilmMapper filmMapper, FilmTypeMapper filmTypeMapper) {
+    public ContentService(
+            FilmMapper filmMapper,
+            FilmTypeMapper filmTypeMapper,
+            FilmTypeMappingMapper filmTypeMappingMapper
+    ) {
         this.filmMapper = filmMapper;
         this.filmTypeMapper = filmTypeMapper;
+        this.filmTypeMappingMapper = filmTypeMappingMapper;
     }
 
     public List<LocalizedFilm> getFilmsOrderedByRanking(String ranking) {
@@ -83,6 +90,31 @@ public class ContentService {
 
         // 执行查询
         return filmMapper.selectJoinPage(new Page<>(page, pageSize), LocalizedFilm.class, wrapper);
+    }
+
+    public LocalizedFilm getFilmDetailById(int id) {
+        return filmMapper.selectJoinOne(
+                LocalizedFilm.class,
+                new MPJLambdaWrapper<Film>()
+                        .selectAll(Film.class)
+                        .eq(Film::getFilmId, id)
+                        .selectAs(Name::getValue, "name")
+                        .selectAs(Message::getValue, "description")
+                        .leftJoin(Name.class, Name::getNameId, Film::getNameId)
+                        .leftJoin(Message.class, Message::getMsgId, Film::getDescId)
+        );
+    }
+
+    public Map<Integer, List<LocalizedFilmType>> getFilmTypesByFilmId(int id) {
+        return filmTypeMappingMapper.selectJoinList(
+                LocalizedFilmType.class,
+                new MPJLambdaWrapper<FilmTypeMapping>()
+                        .selectAll(FilmType.class)
+                        .selectAs(Name::getValue, "name")
+                        .eq(FilmTypeMapping::getFilmId, id)
+                        .leftJoin(FilmType.class, FilmType::getTypeId, FilmTypeMapping::getTypeId)
+                        .leftJoin(Name.class, Name::getNameId, FilmType::getNameId)
+        ).stream().collect(Collectors.groupingBy(FilmType::getScope));
     }
 
     public Map<Integer, List<LocalizedFilmType>> getFilmTypes() {
