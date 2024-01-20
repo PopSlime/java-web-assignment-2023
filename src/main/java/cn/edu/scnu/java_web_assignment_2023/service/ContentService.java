@@ -1,9 +1,7 @@
 package cn.edu.scnu.java_web_assignment_2023.service;
 
 import cn.edu.scnu.java_web_assignment_2023.entity.*;
-import cn.edu.scnu.java_web_assignment_2023.mapper.FilmMapper;
-import cn.edu.scnu.java_web_assignment_2023.mapper.FilmTypeMapper;
-import cn.edu.scnu.java_web_assignment_2023.mapper.FilmTypeMappingMapper;
+import cn.edu.scnu.java_web_assignment_2023.mapper.*;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.github.yulichang.wrapper.MPJLambdaWrapper;
 import org.springframework.stereotype.Service;
@@ -18,15 +16,21 @@ public class ContentService {
     private final FilmMapper filmMapper;
     private final FilmTypeMapper filmTypeMapper;
     private final FilmTypeMappingMapper filmTypeMappingMapper;
+    private final StaffMapper staffMapper;
+    private final FilmStaffMappingMapper filmStaffMappingMapper;
 
     public ContentService(
             FilmMapper filmMapper,
             FilmTypeMapper filmTypeMapper,
-            FilmTypeMappingMapper filmTypeMappingMapper
+            FilmTypeMappingMapper filmTypeMappingMapper,
+            StaffMapper staffMapper,
+            FilmStaffMappingMapper filmStaffMappingMapper
     ) {
         this.filmMapper = filmMapper;
         this.filmTypeMapper = filmTypeMapper;
         this.filmTypeMappingMapper = filmTypeMappingMapper;
+        this.staffMapper = staffMapper;
+        this.filmStaffMappingMapper = filmStaffMappingMapper;
     }
 
     public List<LocalizedFilm> getFilmsOrderedByRanking(String ranking) {
@@ -125,5 +129,18 @@ public class ContentService {
                         .selectAs(Name::getValue, "name")
                         .leftJoin(Name.class, Name::getNameId, FilmType::getNameId)
         ).stream().collect(Collectors.groupingBy(FilmType::getScope));
+    }
+
+    public Map<Integer, List<LocalizedStaff>> getStaffsByFilmId(int id) {
+        return filmStaffMappingMapper.selectJoinList(
+                LocalizedStaff.class,
+                new MPJLambdaWrapper<FilmStaffMapping>()
+                        .selectAll(Staff.class)
+                        .selectAs(FilmStaffMapping::getRole, "role")
+                        .selectAs(Name::getValue, "name")
+                        .eq(FilmStaffMapping::getFilmId, id)
+                        .leftJoin(Staff.class, Staff::getStaffId, FilmStaffMapping::getStaffId)
+                        .leftJoin(Name.class, Name::getNameId, Staff::getNameId)
+        ).stream().collect(Collectors.groupingBy(Staff::getRole));
     }
 }

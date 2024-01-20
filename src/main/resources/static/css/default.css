@@ -319,8 +319,23 @@ a:hover {
 }
 
 #detail-infobox-entries > div > span:first-child {
+    font-weight: bold;
     border-right: solid 2px gray;
     padding-left: 0;
+}
+
+#page-main > section {
+	margin: 1em 2em;
+}
+
+#detail-staffs > div > span:first-child {
+    font-weight: bold;
+    font-size: large;
+    padding-right: 0.5em;
+}
+
+#detail-staffs > div > a {
+    padding: 0 0.5em;
 }
 
 /**

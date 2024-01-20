@@ -24,8 +24,16 @@
             </div>
         </div>
     </header>
-    <section>
-
+    <section id="detail-summary">
+        <h2 th:text="#{description}">简介</h2>
+        <p th:text="${film.description}">这是简介。</p>
+    </section>
+    <section id="detail-staffs">
+        <h2 th:text="#{staff}">演职人员</h2>
+        <div th:each="role : ${staffs}">
+            <span th:text="#{${'role.' + role.key}}">职位</span>
+            <a th:each="staff : ${role.value}" th:text="${staff.name}" th:href="@{/staffDetail(id=${staff.staffId})}">演职人员名</a>
+        </div>
     </section>
 </main>
 </body>

@@ -32,6 +32,7 @@ public class ContentController {
     public String filmDetail(Model model, int id) {
         model.addAttribute("film", service.getFilmDetailById(id));
         model.addAttribute("types", service.getFilmTypesByFilmId(id));
+        model.addAttribute("staffs", service.getStaffsByFilmId(id));
         return "/filmDetail";
     }
 }
