@@ -35,4 +35,11 @@ public class ContentController {
         model.addAttribute("staffs", service.getStaffsByFilmId(id));
         return "/filmDetail";
     }
+
+    @GetMapping("/staffDetail")
+    public String staffDetail(Model model, int id) {
+        model.addAttribute("staff", service.getStaffDetailById(id));
+        model.addAttribute("roles", service.getRolesByStaffId(id));
+        return "/staffDetail";
+    }
 }

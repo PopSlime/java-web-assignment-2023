@@ -143,4 +143,27 @@ public class ContentService {
                         .leftJoin(Name.class, Name::getNameId, Staff::getNameId)
         ).stream().collect(Collectors.groupingBy(Staff::getRole));
     }
+
+    public LocalizedStaff getStaffDetailById(int id) {
+        return staffMapper.selectJoinOne(
+                LocalizedStaff.class,
+                new MPJLambdaWrapper<Staff>()
+                        .selectAll(Staff.class)
+                        .eq(Staff::getStaffId, id)
+                        .selectAs(Name::getValue, "name")
+                        .selectAs(Message::getValue, "description")
+                        .leftJoin(Name.class, Name::getNameId, Staff::getNameId)
+                        .leftJoin(Message.class, Message::getMsgId, Staff::getDescId)
+        );
+    }
+
+    public List<Integer> getRolesByStaffId(int id) {
+        return filmStaffMappingMapper.selectJoinList(
+                Integer.class,
+                new MPJLambdaWrapper<FilmStaffMapping>()
+                        .select(FilmStaffMapping::getRole)
+                        .eq(Staff::getStaffId, id)
+                        .distinct()
+        );
+    }
 }

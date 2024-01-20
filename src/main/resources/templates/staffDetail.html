@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:include="/fragments/layout.html :: layout" lang="zh" th:lang="#{lang}">
+<head>
+    <title id="page-title">[[${staff.name}]]</title>
+</head>
+<body>
+<main id="page-content">
+    <header id="detail">
+        <div id="detail-bg">
+            <div th:style="${'background-image: url(/img/staff/' + staff.picture + ');'}"></div>
+        </div>
+        <div id="detail-infobox">
+            <img src="/img/null.png" alt="演职人员名称" th:src="${'/img/staff/' + staff.picture}" th:alt="${staff.name}" />
+            <div id="detail-infobox-entries">
+                <div id="detail-infobox-name" th:text="${staff.name}">演职人员名称</div>
+                <div>
+                    <span th:text="#{role}">职位</span>
+                    <span th:each="role : ${roles}" th:text="#{${'role.' + role}}">职位名称</span>
+                </div>
+            </div>
+        </div>
+    </header>
+    <section id="detail-summary">
+        <h2 th:text="#{description}">简介</h2>
+        <p th:text="${staff.description}">这是简介。</p>
+    </section>
+<!--    <section id="detail-staffs">-->
+<!--        <h2 th:text="#{staff}">演职人员</h2>-->
+<!--        <div th:each="role : ${staffs}">-->
+<!--            <span th:text="#{${'role.' + role.key}}">职位</span>-->
+<!--            <a th:each="staff : ${role.value}" th:text="${staff.name}" th:href="@{/staffDetail(id=${staff.staffId})}">演职人员名</a>-->
+<!--        </div>-->
+<!--    </section>-->
+</main>
+</body>
+</html>
