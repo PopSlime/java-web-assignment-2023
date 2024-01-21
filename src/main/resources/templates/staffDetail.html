@@ -14,7 +14,7 @@
             <div id="detail-infobox-entries">
                 <div id="detail-infobox-name" th:text="${staff.name}">演职人员名称</div>
                 <div>
-                    <span th:text="#{role}">职位</span>
+                    <span th:text="#{roles}">职位</span>
                     <span th:each="role : ${roles}" th:text="#{${'role.' + role}}">职位名称</span>
                 </div>
             </div>
