@@ -5,11 +5,14 @@
 </head>
 <body>
 <main id="page-content">
-    <form id="index-filter-container">
+    <form id="index-filter-container" method="post" th:action="@{/filter}">
         <div id="search-box-container">
             <input type="search" name="keyword" class="search-box" />
             <input type="submit" value="搜索" th:value="#{search}" class="search-button" />
         </div>
+    </form>
+
+    <form id="index-filter" method="post">
         <table id="index-filters">
             <tr>
                 <td style="color: #a62;" th:text="#{rank}">排行</td>
@@ -65,21 +68,11 @@
 
     <div id="index-list-container">
         <ul id="index-list" class="grid-list" style="grid-template-columns: repeat(auto-fill, minmax(240px, max-content))">
-            <li>
-                <div><img src="/img/film/movie1.png"></div>
-                <a th:href="@{/filmDetail}">匆匆那年</a>
-            </li>
-            <li>
-                <div><img src="/img/film/movie1.png"></div>
-                <a>匆匆那年</a>
-            </li>
-            <li>
-                <div><img src="/img/film/movie1.png"></div>
-                <a>匆匆那年</a>
-            </li>
-            <li>
-                <div><img src="/img/film/movie1.png"></div>
-                <a>匆匆那年</a>
+            <li th:each="movie : ${movies}">
+                <div><img th:src="@{/img/film/${movie.imageUrl}.png}" alt="Movie Image"></div>
+                <a th:href="@{/filmDetail}">
+                    <span th:text="${movie.title}"></span>
+                </a>
             </li>
         </ul>
         <script src="/js/index_pager.js"></script>
