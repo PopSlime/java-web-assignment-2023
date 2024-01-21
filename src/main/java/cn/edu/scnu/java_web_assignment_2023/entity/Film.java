@@ -1,5 +1,6 @@
 package cn.edu.scnu.java_web_assignment_2023.entity;
 
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
@@ -19,4 +20,7 @@ public class Film {
     private int monthlyHeat;
     private int totalHeat;
     private float rating;
+
+    @TableField(exist = false)
+    private int role = Integer.MIN_VALUE;
 }

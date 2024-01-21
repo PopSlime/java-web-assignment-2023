@@ -40,6 +40,7 @@ public class ContentController {
     public String staffDetail(Model model, int id) {
         model.addAttribute("staff", service.getStaffDetailById(id));
         model.addAttribute("roles", service.getRolesByStaffId(id));
+        model.addAttribute("works", service.getWorksByStaffId(id));
         return "/staffDetail";
     }
 }

@@ -338,6 +338,10 @@ a:hover {
     padding: 0 0.5em;
 }
 
+#detail-works li > i {
+    padding: 0 0.5em;
+}
+
 /**
  * Generic
  */

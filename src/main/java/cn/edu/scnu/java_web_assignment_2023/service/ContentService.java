@@ -166,4 +166,18 @@ public class ContentService {
                         .distinct()
         );
     }
+
+    public List<LocalizedFilm> getWorksByStaffId(int id) {
+        return filmStaffMappingMapper.selectJoinList(
+                LocalizedFilm.class,
+                new MPJLambdaWrapper<FilmStaffMapping>()
+                        .selectAll(Film.class)
+                        .selectAs(FilmStaffMapping::getRole, "role")
+                        .selectAs(Name::getValue, "name")
+                        .eq(FilmStaffMapping::getStaffId, id)
+                        .leftJoin(Film.class, Film::getFilmId, FilmStaffMapping::getFilmId)
+                        .leftJoin(Name.class, Name::getNameId, Film::getNameId)
+                        .orderByAsc(Film::getDate)
+        );
+    }
 }
