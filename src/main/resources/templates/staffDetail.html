@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:include="/fragments/layout.html :: layout" lang="zh" th:lang="#{lang}">
+<head>
+    <title id="page-title">[[${staff.name}]]</title>
+</head>
+<body>
+<main id="page-content">
+    <header id="detail">
+        <div id="detail-bg">
+            <div th:style="${'background-image: url(/img/staff/' + staff.picture + ');'}"></div>
+        </div>
+        <div id="detail-infobox">
+            <img src="/img/null.png" alt="演职人员名称" th:src="${'/img/staff/' + staff.picture}" th:alt="${staff.name}" />
+            <div id="detail-infobox-entries">
+                <div id="detail-infobox-name" th:text="${staff.name}">演职人员名称</div>
+                <div>
+                    <span th:text="#{roles}">职位</span>
+                    <span th:each="role : ${roles}" th:text="#{${'role.' + role}}">职位名称</span>
+                </div>
+            </div>
+        </div>
+    </header>
+    <section id="detail-summary">
+        <h2 th:text="#{description}">简介</h2>
+        <p th:text="${staff.description}">这是简介。</p>
+    </section>
+    <section id="detail-works">
+        <h2 th:text="#{works}">作品</h2>
+        <ul>
+            <li th:each="work : ${works}">
+                <span th:text="${#dates.format(work.date, 'yyyy-MM-dd')}">2024-01-20</span>
+                <i th:text="#{'role.' + ${work.role}}">职位</i>
+                <a th:text="${work.name}" th:href="@{/filmDetail(id=${work.filmId})}">电影名</a>
+            </li>
+        </ul>
+    </section>
+</main>
+</body>
+</html>

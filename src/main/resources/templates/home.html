@@ -10,12 +10,52 @@
     </div>
     <div id="rank-list-container" class="flex-list">
         <div class="flex-list">
-            <div id="rank-list-overview" th:text="#{rank.overview}">全部排行</div>
-            <div id="rank-list-weekly" th:text="#{rank.weekly}">本周排行</div>
+            <div>
+                <div style="background-color: #f84;" th:text="#{rank.overview}">全部排行</div>
+                <ol>
+                    <li th:each="film : ${overallRankingList}">
+                        <div>
+                            <a th:text="${film.name}" th:title="${film.name}" th:href="@{/filmDetail(id=${film.filmId})}"></a>
+                            <span th:text="${film.totalHeat}"></span>
+                        </div>
+                    </li>
+                </ol>
+            </div>
+            <div>
+                <div style="background-color: #af2;" th:text="#{rank.weekly}">本周排行</div>
+                <ol>
+                    <li th:each="film : ${weeklyRankingList}">
+                        <div>
+                            <a th:text="${film.name}" th:title="${film.name}" th:href="@{/filmDetail(id=${film.filmId})}"></a>
+                            <span th:text="${film.weeklyHeat}"></span>
+                        </div>
+                    </li>
+                </ol>
+            </div>
         </div>
         <div class="flex-list">
-            <div id="rank-list-monthly" th:text="#{rank.monthly}">本月排行</div>
-            <div id="rank-list-review" th:text="#{rank.review}">好评排行</div>
+            <div>
+                <div style="background-color: #6fd;" th:text="#{rank.monthly}">本月排行</div>
+                <ol>
+                    <li th:each="film : ${monthlyRankingList}">
+                        <div>
+                            <a th:text="${film.name}" th:title="${film.name}" th:href="@{/filmDetail(id=${film.filmId})}"></a>
+                            <span th:text="${film.monthlyHeat}"></span>
+                        </div>
+                    </li>
+                </ol>
+            </div>
+            <div>
+                <div style="background-color: #ace;" th:text="#{rank.review}">好评排行</div>
+                <ol>
+                    <li th:each="film : ${reviewRankingList}">
+                        <div>
+                            <a th:text="${film.name}" th:title="${film.name}" th:href="@{/filmDetail(id=${film.filmId})}"></a>
+                            <span th:text="${film.rating}"></span>
+                        </div>
+                    </li>
+                </ol>
+            </div>
         </div>
     </div>
 </main>

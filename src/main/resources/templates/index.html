@@ -15,72 +15,52 @@
                 <td style="color: #a62;" th:text="#{rank}">排行</td>
                 <td>
                     <div class="flex-list">
-                        <label><input type="radio" name="sort" /><span th:text="#{rank.weekly}">本周排行</span></label>
-                        <label><input type="radio" name="sort" /><span th:text="#{rank.monthly}">本月排行</span></label>
-                        <label><input type="radio" name="sort" /><span th:text="#{rank.review}">好评排行</span></label>
-                        <label><input type="radio" name="sort" checked /><span th:text="#{rank.overview}">全部排行</span></label>
+                        <label>
+                            <input type="radio" name="sort" value="weekly_heat" />
+                            <span th:text="#{rank.weekly}">本周排行</span>
+                        </label>
+                        <label>
+                            <input type="radio" name="sort" value="monthly_heat" />
+                            <span th:text="#{rank.monthly}">本月排行</span>
+                        </label>
+                        <label>
+                            <input type="radio" name="sort" value="rating" />
+                            <span th:text="#{rank.review}">好评排行</span>
+                        </label>
+                        <label>
+                            <input type="radio" name="sort" value="total_heat" checked />
+                            <span th:text="#{rank.overview}">全部排行</span>
+                        </label>
                     </div>
                 </td>
             </tr>
-            <tr>
-                <td style="color: #4a4;" th:text="#{filter.type}">按类型</td>
+            <tr th:each="scope : ${types}">
+                <td style="color: #4a4;" th:text="#{${'scope.' + scope.key}}">大类</td>
                 <td>
                     <div class="flex-list">
-                        <label><input type="checkbox" name="category" /><span>爱情</span></label>
-                        <label><input type="checkbox" name="category" /><span>动作</span></label>
-                        <label><input type="checkbox" name="category" /><span>喜剧</span></label>
-                        <label><input type="checkbox" name="category" /><span>惊悚</span></label>
-                        <label><input type="checkbox" name="category" /><span>恐怖</span></label>
-                        <label><input type="checkbox" name="category" /><span>悬疑</span></label>
-                        <label><input type="checkbox" name="category" /><span>科幻</span></label>
-                        <label><input type="checkbox" name="category" /><span>动画</span></label>
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td style="color: #066;" th:text="#{filter.region}">按地区</td>
-                <td>
-                    <div class="flex-list">
-                        <label><input type="checkbox" name="region" /><span>内地</span></label>
-                        <label><input type="checkbox" name="region" /><span>港台</span></label>
-                        <label><input type="checkbox" name="region" /><span>欧美</span></label>
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td style="color: #aa6;" th:text="#{filter.genre}">按体裁</td>
-                <td>
-                    <div class="flex-list">
-                        <label><input type="checkbox" name="genre" /><span>抗日</span></label>
-                        <label><input type="checkbox" name="genre" /><span>间谍</span></label>
-                        <label><input type="checkbox" name="genre" /><span>硬汉</span></label>
-                        <label><input type="checkbox" name="genre" /><span>枪战</span></label>
-                        <label><input type="checkbox" name="genre" /><span>杀手</span></label>
-                        <label><input type="checkbox" name="genre" /><span>穿越</span></label>
+                        <label th:each="type : ${scope.value}">
+                            <input type="checkbox" th:name="${'type' + scope.key}" th:value="${type.typeId}" />
+                            <span th:text="${type.name}">类型</span>
+                        </label>
                     </div>
                 </td>
             </tr>
         </table>
+        <div id="index-pager">
+            <a href="#" id="pager-first-page">首页</a>
+            <a href="#" id="pager-prev-page">上一页</a>
+            <input id="pager-current-page" name="page" type="number" value="1" />
+            <span>/</span>
+            <span id="pager-total-pages">1</span>
+            <a href="#" id="pager-next-page">下一页</a>
+            <a href="#" id="pager-last-page">尾页</a>
+        </div>
     </form>
 
     <div id="index-list-container">
-        <ul id="index-list" class="grid-list" style="grid-template-columns: repeat(auto-fill, minmax(240px, max-content))">
-            <li>
-                <div><img src="/img/film/movie1.png"></div>
-                <a th:href="@{/filmDetail}">匆匆那年</a>
-            </li>
-            <li>
-                <div><img src="/img/film/movie1.png"></div>
-                <a>匆匆那年</a>
-            </li>
-            <li>
-                <div><img src="/img/film/movie1.png"></div>
-                <a>匆匆那年</a>
-            </li>
-            <li>
-                <div><img src="/img/film/movie1.png"></div>
-                <a>匆匆那年</a>
-            </li>
+        <ul id="index-list" class="grid-list"
+            style="grid-template-columns: repeat(auto-fill, 240px)">
+
         </ul>
         <script src="/js/index_pager.js"></script>
     </div>
