@@ -21,6 +21,11 @@ a:hover {
     color: #a62;
 }
 
+video {
+    display: block;
+    width: 100%;
+}
+
 #page-header-top {
     display: flex;
     justify-content: space-between;
@@ -201,8 +206,24 @@ a:hover {
     min-width: 90%;
 }
 
+#index-list a > div {
+    position: relative;
+}
+
 #index-list img {
     width: 100%;
+}
+
+i.badge-vip {
+    font-family: serif;
+    font-style: normal;
+    font-weight: bold;
+    background-color: gold;
+    color: #c88;
+    position: absolute;
+    right: 0;
+    padding: 0 0.25em;
+    border-bottom-left-radius: 4px;
 }
 
 /**

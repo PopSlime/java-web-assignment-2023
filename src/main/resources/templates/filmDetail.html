@@ -5,6 +5,9 @@
 </head>
 <body>
 <main id="page-content">
+    <video controls th:unless="${film.isVip && !user.isVip}">
+        <source src="/rr@360p.mp4" />
+    </video>
     <header id="detail">
         <div id="detail-bg">
             <div th:style="${'background-image: url(/img/film/' + film.picture + ');'}"></div>

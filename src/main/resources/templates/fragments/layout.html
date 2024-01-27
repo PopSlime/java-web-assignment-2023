@@ -15,7 +15,10 @@
         <div id="page-header-account">
             <a th:text="#{account.login}" th:href="@{/login}" th:unless="${user.userId != null}">登录</a>
             <a th:text="#{account.signup}" th:href="@{/signup}" th:unless="${user.userId != null}">注册</a>
-            <span th:text="${user.userId}" th:if="${user.userId != null}">USER</span>
+            <span th:text="${user.userId}" th:if="${user.userId != null}">
+                USER <span th:if="${user.isVip}">([[#{account.vip}]])</span>
+            </span>
+            <a th:text="#{account.vip.subscribe}" th:if="${user.userId != null && !user.isVip}">开通 VIP</a>
             <a th:text="#{account.logout}" th:href="@{/logout}" th:if="${user.userId != null}">登出</a>
         </div>
     </div>
