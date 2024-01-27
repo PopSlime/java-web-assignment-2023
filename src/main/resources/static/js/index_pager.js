@@ -28,7 +28,9 @@ function setPage(page) {
                             "href", `/filmDetail?id=${film.filmId}`
                         ).append(
                             $("<div>").append(
-                                $("<img>").attr("src", `/img/film/${film.picture}`)
+                                $("<img>")
+                                    .attr("src", `/img/film/${film.picture}`)
+                                    .attr("alt", film.name)
                             )
                         ).append(
                             $("<span>").text(film.name)
