@@ -54,4 +54,8 @@ public class AccountService {
         MessageDigest digest = MessageDigest.getInstance("SHA-256");
         return digest.digest(password.getBytes(StandardCharsets.UTF_8));
     }
+
+    public void update(User user) {
+        mapper.updateById(user);
+    }
 }

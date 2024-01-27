@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width" />
     <link rel="stylesheet" href="/css/default.css" />
     <script src="https://cdnjs.loli.net/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="/js/app.js"></script>
     <title><span th:include=":: #page-title" th:remove="tag"></span> - [[#{page.title}]]</title>
 </head>
 <body>
@@ -18,8 +19,9 @@
             <span th:text="${user.userId}" th:if="${user.userId != null}">
                 USER <span th:if="${user.isVip}">([[#{account.vip}]])</span>
             </span>
-            <a th:text="#{account.vip.subscribe}" th:if="${user.userId != null && !user.isVip}">开通 VIP</a>
+            <a id="account-subscribe" href="#" th:text="#{account.vip.subscribe}" th:if="${user.userId != null && !user.isVip}">开通 VIP</a>
             <a th:text="#{account.logout}" th:href="@{/logout}" th:if="${user.userId != null}">登出</a>
+            <div class="client-message" id="msg-subscribe-confirm" th:text="#{account.vip.subscribe.confirm}">是否要开通 VIP？</div>
         </div>
     </div>
 
