@@ -5,6 +5,10 @@ const pageColumnCount = $("#index-list").css("gridTemplateColumns").split(" ").l
 const pageSize = pageRowCount * pageColumnCount;
 console.log(`Page Size = ${pageSize}`);
 
+const queryParams = new URLSearchParams(window.location.search);
+const region = queryParams.get("region");
+if (region) $(`input[value=${region}]`).attr("checked", "checked");
+
 const list = $("#index-list");
 let baseUrl = null;
 let currentPage = 1;
@@ -21,14 +25,15 @@ function setPage(page) {
                 let imgContainer = $("<div>").append(
                     $("<img>")
                         .attr("src", `/img/film/${film.picture}`)
+                        .attr("alt", film.name)
                 );
                 if (film.vip) imgContainer.append($("<i>").addClass("badge-vip").text("VIP"));
                 list.append(
                     $("<li>").append(
                         $("<a>")
-                        .attr("href", `/filmDetail?id=${film.filmId}`)
-                        .append(imgContainer)
-                        .append($("<span>").text(film.name))
+                            .attr("href", `/filmDetail?id=${film.filmId}`)
+                            .append(imgContainer)
+                            .append($("<span>").text(film.name))
                     )
                 );
             }
