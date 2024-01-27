@@ -23,9 +23,9 @@
     <nav id="navbar">
         <a th:href="@{/}" th:text="#{page.home}">首页</a>
         <a th:href="@{/index}" th:text="#{movie}">电影</a>
-        <a th:text="#{region.hong_kong}">香港</a>
-        <a th:text="#{region.western}">欧美</a>
-        <a th:text="#{region.mainland}">内地</a>
+        <a th:href="@{/index?region=1002}" th:text="#{region.hong_kong}">港台</a>
+        <a th:href="@{/index?region=1003}" th:text="#{region.western}">欧美</a>
+        <a th:href="@{/index?region=1001}" th:text="#{region.mainland}">内地</a>
     </nav>
 </div>
 
