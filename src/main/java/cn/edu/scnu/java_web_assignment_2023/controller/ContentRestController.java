@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 public class ContentRestController {
     private final ContentService service;
@@ -26,5 +28,13 @@ public class ContentRestController {
             @RequestParam(required = false) int[] type2
     ) {
         return service.getFilmsPaged(page, pageSize, ranking, keyword, type0, type1, type2);
+    }
+
+    @GetMapping("/api/stats")
+    public List<LocalizedFilm> stats(
+            @RequestParam(defaultValue = "total_heat") String ranking,
+            @RequestParam(defaultValue = "25") int count
+    ) {
+        return service.getFilmsOrderedByRanking(ranking, count);
     }
 }
