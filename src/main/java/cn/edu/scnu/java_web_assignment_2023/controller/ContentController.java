@@ -43,4 +43,9 @@ public class ContentController {
         model.addAttribute("works", service.getWorksByStaffId(id));
         return "/staffDetail";
     }
+
+    @GetMapping("/stats")
+    public String stats(Model model) {
+        return "/stats";
+    }
 }
