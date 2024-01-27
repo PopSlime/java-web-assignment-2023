@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:include="/fragments/layout.html :: layout" lang="zh" th:lang="#{lang}">
+<head>
+    <title id="page-title">[[#{stats}]]</title>
+</head>
+<body>
+<main id="page-content">
+    <script src="https://cdnjs.loli.net/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+    <div style="margin: auto; max-width: 960px;">
+        <h2 th:text="#{rank.overview}">全部排行</h2>
+        <canvas id="chart-overview"></canvas>
+        <h2 th:text="#{rank.weekly}">本周排行</h2>
+        <canvas id="chart-weekly"></canvas>
+        <h2 th:text="#{rank.monthly}">本月排行</h2>
+        <canvas id="chart-monthly"></canvas>
+        <h2 th:text="#{rank.review}">好评排行</h2>
+        <canvas id="chart-review"></canvas>
+    </div>
+    <div class="client-message">
+        <span id="msg-stats-hot" th:text="#{stats.hot}">热度</span>
+        <span id="msg-stats-rating" th:text="#{stats.rating}">评分</span>
+    </div>
+    <script src="/js/stats.js"></script>
+</main>
+</body>
+</html>
