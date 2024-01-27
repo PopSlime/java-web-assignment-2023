@@ -157,6 +157,7 @@ a:hover {
     padding: 0 0.5em;
     min-width: 80px;
     height: 32px;
+    line-height: 32px;
     cursor: pointer;
 }
 
@@ -169,7 +170,7 @@ a:hover {
 }
 
 #index-filters span {
-    vertical-align: middle;
+    vertical-align: baseline;
 }
 
 #search-box-container {

@@ -5,6 +5,10 @@ const pageColumnCount = $("#index-list").css("gridTemplateColumns").split(" ").l
 const pageSize = pageRowCount * pageColumnCount;
 console.log(`Page Size = ${pageSize}`);
 
+const queryParams = new URLSearchParams(window.location.search);
+const region = queryParams.get("region");
+if (region) $(`input[value=${region}]`).attr("checked", "checked");
+
 const list = $("#index-list");
 let baseUrl = null;
 let currentPage = 1;
@@ -24,7 +28,9 @@ function setPage(page) {
                             "href", `/filmDetail?id=${film.filmId}`
                         ).append(
                             $("<div>").append(
-                                $("<img>").attr("src", `/img/film/${film.picture}`)
+                                $("<img>")
+                                    .attr("src", `/img/film/${film.picture}`)
+                                    .attr("alt", film.name)
                             )
                         ).append(
                             $("<span>").text(film.name)
