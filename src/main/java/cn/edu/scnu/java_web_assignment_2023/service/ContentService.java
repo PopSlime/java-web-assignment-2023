@@ -2,6 +2,7 @@ package cn.edu.scnu.java_web_assignment_2023.service;
 
 import cn.edu.scnu.java_web_assignment_2023.entity.*;
 import cn.edu.scnu.java_web_assignment_2023.mapper.*;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.github.yulichang.wrapper.MPJLambdaWrapper;
 import org.springframework.stereotype.Service;
@@ -31,6 +32,10 @@ public class ContentService {
         this.filmTypeMappingMapper = filmTypeMappingMapper;
         this.staffMapper = staffMapper;
         this.filmStaffMappingMapper = filmStaffMappingMapper;
+    }
+
+    public void checkSqlCompatibility() {
+        filmMapper.selectList(new QueryWrapper<Film>().apply("with cte as (select 1) select 1").last("limit 1"));
     }
 
     public List<LocalizedFilm> getFilmsOrderedByRanking(String ranking) {

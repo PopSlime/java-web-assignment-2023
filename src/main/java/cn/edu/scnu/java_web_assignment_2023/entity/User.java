@@ -17,6 +17,8 @@ public class User {
     private byte[] password;
     private boolean isVip;
 
+    public static final User EMPTY = new User();
+
     public void copyTo(User other) {
         other.setUserId(userId);
         other.setPassword(password);
