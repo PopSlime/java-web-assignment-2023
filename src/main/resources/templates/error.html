@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:include="/fragments/layout.html :: layout" lang="zh" th:lang="#{lang}">
+<head>
+    <title id="page-title">[[#{error}]]</title>
+</head>
+<body>
+<main id="page-content">
+    <h1 th:text="#{${'error.' + scope}}"></h1>
+    <p><small th:text="#{${'error.' + scope + '.description'}}"></small></p>
+    <p th:text="#{${'error.' + scope + '.' + type}}"></p>
+</main>
+</body>
+</html>
