@@ -1,6 +1,6 @@
 package cn.edu.scnu.java_web_assignment_2023.controller;
 
-import cn.edu.scnu.java_web_assignment_2023.entity.LocalizedFilm;
+import cn.edu.scnu.java_web_assignment_2023.entity.LocalizedBangumi;
 import cn.edu.scnu.java_web_assignment_2023.service.ContentService;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,7 +18,7 @@ public class ContentRestController {
     }
 
     @GetMapping("/api/index")
-    public Page<LocalizedFilm> index(
+    public Page<LocalizedBangumi> index(
             @RequestParam(defaultValue = "1") int page,
             @RequestParam(defaultValue = "10") int pageSize,
             @RequestParam(defaultValue = "total_heat") String ranking,
@@ -27,14 +27,14 @@ public class ContentRestController {
             @RequestParam(required = false) int[] type1,
             @RequestParam(required = false) int[] type2
     ) {
-        return service.getFilmsPaged(page, pageSize, ranking, keyword, type0, type1, type2);
+        return service.getBangumiPaged(page, pageSize, ranking, keyword, type0, type1, type2);
     }
 
     @GetMapping("/api/stats")
-    public List<LocalizedFilm> stats(
+    public List<LocalizedBangumi> stats(
             @RequestParam(defaultValue = "total_heat") String ranking,
             @RequestParam(defaultValue = "25") int count
     ) {
-        return service.getFilmsOrderedByRanking(ranking, count);
+        return service.getBangumiOrderedByRanking(ranking, count);
     }
 }

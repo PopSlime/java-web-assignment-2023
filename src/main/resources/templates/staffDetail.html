@@ -30,7 +30,7 @@
             <li th:each="work : ${works}">
                 <span th:text="${#dates.format(work.date, 'yyyy-MM-dd')}">2024-01-20</span>
                 <i th:text="#{'role.' + ${work.role}}">职位</i>
-                <a th:text="${work.name}" th:href="@{/filmDetail(id=${work.filmId})}">电影名</a>
+                <a th:text="${work.name}" th:href="@{/bangumiDetail(id=${work.bangumiId})}">番剧名称</a>
             </li>
         </ul>
     </section>

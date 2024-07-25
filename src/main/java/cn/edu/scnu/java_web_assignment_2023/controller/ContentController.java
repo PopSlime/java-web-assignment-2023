@@ -15,25 +15,25 @@ public class ContentController {
 
     @GetMapping("/")
     public String home(Model model) {
-        model.addAttribute("overallRankingList", service.getFilmsOrderedByRanking("total_heat"));
-        model.addAttribute("weeklyRankingList", service.getFilmsOrderedByRanking("weekly_heat"));
-        model.addAttribute("monthlyRankingList", service.getFilmsOrderedByRanking("monthly_heat"));
-        model.addAttribute("reviewRankingList", service.getFilmsOrderedByRanking("rating"));
+        model.addAttribute("overallRankingList", service.getBangumiOrderedByRanking("total_heat"));
+        model.addAttribute("weeklyRankingList", service.getBangumiOrderedByRanking("weekly_heat"));
+        model.addAttribute("monthlyRankingList", service.getBangumiOrderedByRanking("monthly_heat"));
+        model.addAttribute("reviewRankingList", service.getBangumiOrderedByRanking("rating"));
         return "/home";
     }
 
     @GetMapping("/index")
     public String index(Model model) {
-        model.addAttribute("types", service.getFilmTypes());
+        model.addAttribute("types", service.getBangumiTypes());
         return "/index";
     }
 
-    @GetMapping("/filmDetail")
-    public String filmDetail(Model model, int id) {
-        model.addAttribute("film", service.getFilmDetailById(id));
-        model.addAttribute("types", service.getFilmTypesByFilmId(id));
-        model.addAttribute("staffs", service.getStaffsByFilmId(id));
-        return "/filmDetail";
+    @GetMapping("/bangumiDetail")
+    public String bangumiDetail(Model model, int id) {
+        model.addAttribute("bangumi", service.getBangumiDetailById(id));
+        model.addAttribute("types", service.getBangumiTypesByBangumiId(id));
+        model.addAttribute("staffs", service.getStaffsByBangumiId(id));
+        return "/bangumiDetail";
     }
 
     @GetMapping("/staffDetail")

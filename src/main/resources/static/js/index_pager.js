@@ -21,19 +21,19 @@ function setPage(page) {
     if (baseUrl) {
         $.getJSON(`${baseUrl}&page=${page}`, function (data) {
             list.empty();
-            for (var film of data.records) {
+            for (var bangumi of data.records) {
                 let imgContainer = $("<div>").append(
                     $("<img>")
-                        .attr("src", `/img/film/${film.picture}`)
-                        .attr("alt", film.name)
+                        .attr("src", `/img/bangumi/${bangumi.picture}`)
+                        .attr("alt", bangumi.name)
                 );
-                if (film.vip) imgContainer.append($("<i>").addClass("badge-vip").text("VIP"));
+                if (bangumi.vip) imgContainer.append($("<i>").addClass("badge-vip").text("VIP"));
                 list.append(
                     $("<li>").append(
                         $("<a>")
-                            .attr("href", `/filmDetail?id=${film.filmId}`)
+                            .attr("href", `/bangumiDetail?id=${bangumi.bangumiId}`)
                             .append(imgContainer)
-                            .append($("<span>").text(film.name))
+                            .append($("<span>").text(bangumi.name))
                     )
                 );
             }

@@ -13,10 +13,10 @@
             <div>
                 <div style="background-color: #f84;" th:text="#{rank.overview}">全部排行</div>
                 <ol>
-                    <li th:each="film : ${overallRankingList}">
+                    <li th:each="bangumi : ${overallRankingList}">
                         <div>
-                            <a th:text="${film.name}" th:title="${film.name}" th:href="@{/filmDetail(id=${film.filmId})}"></a>
-                            <span th:text="${film.totalHeat}"></span>
+                            <a th:text="${bangumi.name}" th:title="${bangumi.name}" th:href="@{/bangumiDetail(id=${bangumi.bangumiId})}"></a>
+                            <span th:text="${bangumi.totalHeat}"></span>
                         </div>
                     </li>
                 </ol>
@@ -24,10 +24,10 @@
             <div>
                 <div style="background-color: #af2;" th:text="#{rank.weekly}">本周排行</div>
                 <ol>
-                    <li th:each="film : ${weeklyRankingList}">
+                    <li th:each="bangumi : ${weeklyRankingList}">
                         <div>
-                            <a th:text="${film.name}" th:title="${film.name}" th:href="@{/filmDetail(id=${film.filmId})}"></a>
-                            <span th:text="${film.weeklyHeat}"></span>
+                            <a th:text="${bangumi.name}" th:title="${bangumi.name}" th:href="@{/bangumiDetail(id=${bangumi.bangumiId})}"></a>
+                            <span th:text="${bangumi.weeklyHeat}"></span>
                         </div>
                     </li>
                 </ol>
@@ -37,10 +37,10 @@
             <div>
                 <div style="background-color: #6fd;" th:text="#{rank.monthly}">本月排行</div>
                 <ol>
-                    <li th:each="film : ${monthlyRankingList}">
+                    <li th:each="bangumi : ${monthlyRankingList}">
                         <div>
-                            <a th:text="${film.name}" th:title="${film.name}" th:href="@{/filmDetail(id=${film.filmId})}"></a>
-                            <span th:text="${film.monthlyHeat}"></span>
+                            <a th:text="${bangumi.name}" th:title="${bangumi.name}" th:href="@{/bangumiDetail(id=${bangumi.bangumiId})}"></a>
+                            <span th:text="${bangumi.monthlyHeat}"></span>
                         </div>
                     </li>
                 </ol>
@@ -48,10 +48,10 @@
             <div>
                 <div style="background-color: #ace;" th:text="#{rank.review}">好评排行</div>
                 <ol>
-                    <li th:each="film : ${reviewRankingList}">
+                    <li th:each="bangumi : ${reviewRankingList}">
                         <div>
-                            <a th:text="${film.name}" th:title="${film.name}" th:href="@{/filmDetail(id=${film.filmId})}"></a>
-                            <span th:text="${film.rating}"></span>
+                            <a th:text="${bangumi.name}" th:title="${bangumi.name}" th:href="@{/bangumiDetail(id=${bangumi.bangumiId})}"></a>
+                            <span th:text="${bangumi.rating}"></span>
                         </div>
                     </li>
                 </ol>
