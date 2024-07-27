@@ -15,19 +15,16 @@ public class User {
     @TableId(type = IdType.INPUT)
     private String userId;
     private byte[] password;
-    private boolean isVip;
 
     public static final User EMPTY = new User();
 
     public void copyTo(User other) {
         other.setUserId(userId);
         other.setPassword(password);
-        other.setVip(isVip);
     }
 
     public void reset() {
         setUserId(null);
         setPassword(null);
-        setVip(false);
     }
 }
