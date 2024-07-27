@@ -27,7 +27,6 @@ function setPage(page) {
                         .attr("src", `/img/bangumi/${bangumi.picture}`)
                         .attr("alt", bangumi.name)
                 );
-                if (bangumi.vip) imgContainer.append($("<i>").addClass("badge-vip").text("VIP"));
                 list.append(
                     $("<li>").append(
                         $("<a>")

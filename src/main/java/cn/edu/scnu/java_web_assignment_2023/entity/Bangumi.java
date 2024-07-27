@@ -20,7 +20,6 @@ public class Bangumi {
     private int monthlyHeat;
     private int totalHeat;
     private float rating;
-    private boolean isVip;
 
     @TableField(exist = false)
     private int role = Integer.MIN_VALUE;
