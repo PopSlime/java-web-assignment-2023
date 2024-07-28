@@ -1,0 +1,76 @@
+{
+	"lang": "zh-cn",
+	"date": {
+		"month_abbr": [
+			"1月",
+			"2月",
+			"3月",
+			"4月",
+			"5月",
+			"6月",
+			"7月",
+			"8月",
+			"9月",
+			"10月",
+			"11月",
+			"12月"
+		],
+		"day_abbr": [
+			"周日",
+			"周一",
+			"周二",
+			"周三",
+			"周四",
+			"周五",
+			"周六"
+		],
+		"day": [
+			"星期日",
+			"星期一",
+			"星期二",
+			"星期三",
+			"星期四",
+			"星期五",
+			"星期六"
+		],
+		"month": [
+			"1月",
+			"2月",
+			"3月",
+			"4月",
+			"5月",
+			"6月",
+			"7月",
+			"8月",
+			"9月",
+			"10月",
+			"11月",
+			"12月"
+		]
+	},
+	"api": {
+		"wikipedia": "zh"
+	},
+	"messages": {
+		"loading": "加载中",
+		"contract_timeline": "放大时间线",
+		"return_to_title": "回到开头",
+		"wikipedia": "来自维基百科，自由的百科全书",
+		"loading_content": "正在加载内容",
+		"expand_timeline": "缩小时间线",
+		"loading_timeline": "正在加载时间线……",
+		"swipe_to_navigate": "左右滑动以导航<br><span class='tl-button'>OK</span>"
+	},
+	"dateformats": {
+		"full_long": "dddd yyyy年mmmd日 HH:MM",
+		"full_short": "mmmd日",
+		"full": "yyyy年mmmmd日",
+		"month_short": "mmm",
+		"time_no_seconds_small_date": "HH:MM'<br/><small>'yyyy年mmmmd日'</small>'",
+		"month": "yyyy年mmmm",
+		"time_no_seconds_short": "HH:MM",
+		"time_short": "HH:MM:ss",
+		"year": "yyyy年",
+		"full_long_small_date": "HH:MM'<br/><small>'dddd',' yyyy年mmmd日'</small>'"
+	}
+}
