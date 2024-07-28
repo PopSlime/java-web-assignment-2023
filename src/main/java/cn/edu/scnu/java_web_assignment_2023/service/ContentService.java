@@ -17,21 +17,15 @@ public class ContentService {
     private final BangumiMapper bangumiMapper;
     private final BangumiTypeMapper bangumiTypeMapper;
     private final BangumiTypeMappingMapper bangumiTypeMappingMapper;
-    private final StaffMapper staffMapper;
-    private final BangumiStaffMappingMapper bangumiStaffMappingMapper;
 
     public ContentService(
             BangumiMapper bangumiMapper,
             BangumiTypeMapper bangumiTypeMapper,
-            BangumiTypeMappingMapper bangumiTypeMappingMapper,
-            StaffMapper staffMapper,
-            BangumiStaffMappingMapper bangumiStaffMappingMapper
+            BangumiTypeMappingMapper bangumiTypeMappingMapper
     ) {
         this.bangumiMapper = bangumiMapper;
         this.bangumiTypeMapper = bangumiTypeMapper;
         this.bangumiTypeMappingMapper = bangumiTypeMappingMapper;
-        this.staffMapper = staffMapper;
-        this.bangumiStaffMappingMapper = bangumiStaffMappingMapper;
     }
 
     public void checkSqlCompatibility() {
@@ -134,55 +128,5 @@ public class ContentService {
                         .selectAs(Name::getValue, "name")
                         .leftJoin(Name.class, Name::getNameId, BangumiType::getNameId)
         ).stream().collect(Collectors.groupingBy(BangumiType::getScope));
-    }
-
-    public Map<Integer, List<LocalizedStaff>> getStaffsByBangumiId(int id) {
-        return bangumiStaffMappingMapper.selectJoinList(
-                LocalizedStaff.class,
-                new MPJLambdaWrapper<BangumiStaffMapping>()
-                        .selectAll(Staff.class)
-                        .selectAs(BangumiStaffMapping::getRole, "role")
-                        .selectAs(Name::getValue, "name")
-                        .eq(BangumiStaffMapping::getBangumiId, id)
-                        .leftJoin(Staff.class, Staff::getStaffId, BangumiStaffMapping::getStaffId)
-                        .leftJoin(Name.class, Name::getNameId, Staff::getNameId)
-        ).stream().collect(Collectors.groupingBy(Staff::getRole));
-    }
-
-    public LocalizedStaff getStaffDetailById(int id) {
-        return staffMapper.selectJoinOne(
-                LocalizedStaff.class,
-                new MPJLambdaWrapper<Staff>()
-                        .selectAll(Staff.class)
-                        .eq(Staff::getStaffId, id)
-                        .selectAs(Name::getValue, "name")
-                        .selectAs(Message::getValue, "description")
-                        .leftJoin(Name.class, Name::getNameId, Staff::getNameId)
-                        .leftJoin(Message.class, Message::getMsgId, Staff::getDescId)
-        );
-    }
-
-    public List<Integer> getRolesByStaffId(int id) {
-        return bangumiStaffMappingMapper.selectJoinList(
-                Integer.class,
-                new MPJLambdaWrapper<BangumiStaffMapping>()
-                        .select(BangumiStaffMapping::getRole)
-                        .eq(Staff::getStaffId, id)
-                        .distinct()
-        );
-    }
-
-    public List<LocalizedBangumi> getWorksByStaffId(int id) {
-        return bangumiStaffMappingMapper.selectJoinList(
-                LocalizedBangumi.class,
-                new MPJLambdaWrapper<BangumiStaffMapping>()
-                        .selectAll(Bangumi.class)
-                        .selectAs(BangumiStaffMapping::getRole, "role")
-                        .selectAs(Name::getValue, "name")
-                        .eq(BangumiStaffMapping::getStaffId, id)
-                        .leftJoin(Bangumi.class, Bangumi::getBangumiId, BangumiStaffMapping::getBangumiId)
-                        .leftJoin(Name.class, Name::getNameId, Bangumi::getNameId)
-                        .orderByAsc(Bangumi::getDate)
-        );
     }
 }

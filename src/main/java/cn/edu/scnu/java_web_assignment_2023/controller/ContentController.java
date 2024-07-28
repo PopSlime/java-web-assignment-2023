@@ -32,16 +32,7 @@ public class ContentController {
     public String bangumiDetail(Model model, int id) {
         model.addAttribute("bangumi", service.getBangumiDetailById(id));
         model.addAttribute("types", service.getBangumiTypesByBangumiId(id));
-        model.addAttribute("staffs", service.getStaffsByBangumiId(id));
         return "/bangumiDetail";
-    }
-
-    @GetMapping("/staffDetail")
-    public String staffDetail(Model model, int id) {
-        model.addAttribute("staff", service.getStaffDetailById(id));
-        model.addAttribute("roles", service.getRolesByStaffId(id));
-        model.addAttribute("works", service.getWorksByStaffId(id));
-        return "/staffDetail";
     }
 
     @GetMapping("/stats")
