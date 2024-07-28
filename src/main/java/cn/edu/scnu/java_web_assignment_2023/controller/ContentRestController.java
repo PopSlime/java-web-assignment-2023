@@ -1,12 +1,14 @@
 package cn.edu.scnu.java_web_assignment_2023.controller;
 
 import cn.edu.scnu.java_web_assignment_2023.entity.LocalizedBangumi;
+import cn.edu.scnu.java_web_assignment_2023.entity.LocalizedEpisode;
 import cn.edu.scnu.java_web_assignment_2023.service.ContentService;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.time.OffsetDateTime;
 import java.util.List;
 
 @RestController
@@ -36,5 +38,13 @@ public class ContentRestController {
             @RequestParam(defaultValue = "25") int count
     ) {
         return service.getBangumiOrderedByRanking(ranking, count);
+    }
+
+    @GetMapping("/api/index_episode")
+    public List<LocalizedEpisode> index_episode(
+            @RequestParam String startDateTime,
+            @RequestParam(defaultValue = "25") int count
+    ) {
+        return service.getEpisodes(OffsetDateTime.parse(startDateTime), count);
     }
 }

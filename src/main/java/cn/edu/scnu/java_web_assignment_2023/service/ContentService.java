@@ -1,12 +1,16 @@
 package cn.edu.scnu.java_web_assignment_2023.service;
 
 import cn.edu.scnu.java_web_assignment_2023.entity.*;
-import cn.edu.scnu.java_web_assignment_2023.mapper.*;
+import cn.edu.scnu.java_web_assignment_2023.mapper.BangumiMapper;
+import cn.edu.scnu.java_web_assignment_2023.mapper.BangumiTypeMapper;
+import cn.edu.scnu.java_web_assignment_2023.mapper.BangumiTypeMappingMapper;
+import cn.edu.scnu.java_web_assignment_2023.mapper.EpisodeMapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.github.yulichang.wrapper.MPJLambdaWrapper;
 import org.springframework.stereotype.Service;
 
+import java.time.OffsetDateTime;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
@@ -17,15 +21,18 @@ public class ContentService {
     private final BangumiMapper bangumiMapper;
     private final BangumiTypeMapper bangumiTypeMapper;
     private final BangumiTypeMappingMapper bangumiTypeMappingMapper;
+    private final EpisodeMapper episodeMapper;
 
     public ContentService(
             BangumiMapper bangumiMapper,
             BangumiTypeMapper bangumiTypeMapper,
-            BangumiTypeMappingMapper bangumiTypeMappingMapper
+            BangumiTypeMappingMapper bangumiTypeMappingMapper,
+            EpisodeMapper episodeMapper
     ) {
         this.bangumiMapper = bangumiMapper;
         this.bangumiTypeMapper = bangumiTypeMapper;
         this.bangumiTypeMappingMapper = bangumiTypeMappingMapper;
+        this.episodeMapper = episodeMapper;
     }
 
     public void checkSqlCompatibility() {
@@ -128,5 +135,20 @@ public class ContentService {
                         .selectAs(Name::getValue, "name")
                         .leftJoin(Name.class, Name::getNameId, BangumiType::getNameId)
         ).stream().collect(Collectors.groupingBy(BangumiType::getScope));
+    }
+
+    public List<LocalizedEpisode> getEpisodes(OffsetDateTime startDateTime, int limit) {
+        return episodeMapper.selectJoinList(
+                LocalizedEpisode.class,
+                new MPJLambdaWrapper<Episode>()
+                        .selectAll(Episode.class)
+                        .selectAs(Name::getValue, "name")
+                        .selectAs(Bangumi::getPicture, "picture")
+                        .ge(Episode::getDatetime, startDateTime)
+                        .orderByAsc(Episode::getDatetime)
+                        .last("limit " + limit)
+                        .leftJoin(Bangumi.class, Bangumi::getBangumiId, Episode::getBangumiId)
+                        .leftJoin(Name.class, Name::getNameId, Bangumi::getNameId)
+        );
     }
 }
