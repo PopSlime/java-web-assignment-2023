@@ -215,18 +215,6 @@ video {
     width: 100%;
 }
 
-i.badge-vip {
-    font-family: serif;
-    font-style: normal;
-    font-weight: bold;
-    background-color: gold;
-    color: #c88;
-    position: absolute;
-    right: 0;
-    padding: 0 0.25em;
-    border-bottom-left-radius: 4px;
-}
-
 /**
  * Account
  */
