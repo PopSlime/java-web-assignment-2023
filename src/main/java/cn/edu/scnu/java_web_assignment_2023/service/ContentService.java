@@ -137,18 +137,17 @@ public class ContentService {
         ).stream().collect(Collectors.groupingBy(BangumiType::getScope));
     }
 
-    public List<LocalizedEpisode> getEpisodes(OffsetDateTime startDateTime, int limit) {
-        return episodeMapper.selectJoinList(
-                LocalizedEpisode.class,
-                new MPJLambdaWrapper<Episode>()
-                        .selectAll(Episode.class)
-                        .selectAs(Name::getValue, "name")
-                        .selectAs(Bangumi::getPicture, "picture")
-                        .ge(Episode::getDatetime, startDateTime)
-                        .orderByAsc(Episode::getDatetime)
-                        .last("limit " + limit)
-                        .leftJoin(Bangumi.class, Bangumi::getBangumiId, Episode::getBangumiId)
-                        .leftJoin(Name.class, Name::getNameId, Bangumi::getNameId)
-        );
+    public List<LocalizedEpisode> getEpisodes(OffsetDateTime startDateTime, Integer bangumiId, int limit) {
+        MPJLambdaWrapper<Episode> wrapper = new MPJLambdaWrapper<Episode>()
+                .selectAll(Episode.class)
+                .selectAs(Name::getValue, "name")
+                .selectAs(Bangumi::getPicture, "picture");
+        if (bangumiId != null) wrapper.eq(Episode::getBangumiId, bangumiId);
+        if (startDateTime != null) wrapper.ge(Episode::getDatetime, startDateTime);
+        wrapper.orderByAsc(Episode::getDatetime)
+                .last("limit " + limit)
+                .leftJoin(Bangumi.class, Bangumi::getBangumiId, Episode::getBangumiId)
+                .leftJoin(Name.class, Name::getNameId, Bangumi::getNameId);
+        return episodeMapper.selectJoinList(LocalizedEpisode.class, wrapper);
     }
 }

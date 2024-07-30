@@ -6,7 +6,14 @@
 <body>
 <main id="page-content">
     <div id="timeline-container" style="width: 100%; height: 480px;"></div>
-    <script src="/js/main_timeline.js"></script>
+    <script>
+        const currentDateTime = new Date();
+        const startDateTime = new Date(currentDateTime);
+        startDateTime.setMonth(currentDateTime.getMonth() - 12);
+        const url = `/api/index_episode?startDateTime=${startDateTime.toISOString()}`;
+        startDateTime.setMonth(currentDateTime.getMonth() + 9);
+        createTimeline(url, "timeline-container", currentDateTime, startDateTime, 8);
+    </script>
     <div id="rank-list-container" class="flex-list">
         <div>
             <div style="background-color: #f84;" th:text="#{rank.overview}">全部排行</div>
