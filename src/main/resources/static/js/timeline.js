@@ -1,6 +1,6 @@
 "use strict";
 
-function createTimeline(url, container, currentDateTime, startDateTime, scaleFactor) {
+function createTimeline(url, container, currentDateTime, startDateTime, scaleFactor, useIndexName) {
     $.getJSON(url, function (data) {
         const events = [];
         let title = null;
@@ -16,16 +16,19 @@ function createTimeline(url, container, currentDateTime, startDateTime, scaleFac
 
                 let indexName = episode.indexName;
                 if (indexName == null) indexName = (index - episode.indexOffset).toString();
+                indexName = `#${indexName}`;
+
+                const text = useIndexName
+                    ? { headline: indexName }
+                    : { headline: episode.name, text: indexName };
+                const media = useIndexName
+                    ? null
+                    : { url: picUrl, thumbnail: picUrl };
+
                 const event = {
                     start_date: toTimelineDate(date),
-                    text: {
-                        headline: episode.name,
-                        text: `#${indexName}`,
-                    },
-                    media: {
-                        url: picUrl.replace(".webp", ""),
-                        thumbnail: picUrl.replace(".webp", ""),
-                    },
+                    text,
+                    media,
                 };
                 events.push(event);
 

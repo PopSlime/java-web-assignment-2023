@@ -12,7 +12,7 @@
         startDateTime.setMonth(currentDateTime.getMonth() - 12);
         const url = `/api/index_episode?startDateTime=${startDateTime.toISOString()}`;
         startDateTime.setMonth(currentDateTime.getMonth() + 9);
-        createTimeline(url, "timeline-container", currentDateTime, startDateTime, 8);
+        createTimeline(url, "timeline-container", currentDateTime, startDateTime, 8, false);
     </script>
     <div id="rank-list-container" class="flex-list">
         <div>

@@ -28,7 +28,7 @@
     <script>
         const currentDateTime = new Date();
         const id = new URLSearchParams(window.location.search).get("id");
-        createTimeline(`/api/index_episode?bangumiId=${id}`, "timeline-container", currentDateTime, null, 2);
+        createTimeline(`/api/index_episode?bangumiId=${id}`, "timeline-container", currentDateTime, null, 2, true);
     </script>
     <section id="detail-summary">
         <p th:utext="${bangumi.description}">这是简介。</p>
