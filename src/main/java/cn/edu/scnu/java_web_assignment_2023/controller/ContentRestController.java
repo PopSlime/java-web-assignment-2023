@@ -43,7 +43,7 @@ public class ContentRestController {
     @GetMapping("/api/index_episode")
     public List<LocalizedEpisode> index_episode(
             @RequestParam String startDateTime,
-            @RequestParam(defaultValue = "25") int count
+            @RequestParam(defaultValue = "100") int count
     ) {
         return service.getEpisodes(OffsetDateTime.parse(startDateTime), count);
     }

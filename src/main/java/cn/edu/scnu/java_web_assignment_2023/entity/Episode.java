@@ -9,7 +9,10 @@ import java.util.Date;
 @TableName(value = "episode")
 public class Episode {
     private int bangumiId;
-    private int index;
+    private int beginIndex;
+    private Integer endIndex;
+    private int indexOffset;
     private String indexName;
     private Date datetime;
+    private int period;
 }
