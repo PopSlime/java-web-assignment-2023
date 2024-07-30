@@ -91,15 +91,11 @@ video {
 }
 
 #rank-list-container > div {
-    flex: 1 1 500px;
-}
-
-#rank-list-container > div > div {
     flex: 1 1 200px;
     margin: 4px;
 }
 
-#rank-list-container > div > div > div {
+#rank-list-container > div > div {
     padding: 4px 8px;
 }
 
@@ -302,6 +298,7 @@ video {
 
 #detail-infobox > img {
 	box-shadow: black 0 0 16px;
+	max-height: 400px;
 }
 
 /* TODO: Respond to width <= 800px */
