@@ -6,8 +6,8 @@ const pageSize = pageRowCount * pageColumnCount;
 console.log(`Page Size = ${pageSize}`);
 
 const queryParams = new URLSearchParams(window.location.search);
-const region = queryParams.get("region");
-if (region) $(`input[value=${region}]`).attr("checked", "checked");
+const origin = queryParams.get("origin");
+if (origin) $(`input[value=${origin}]`).attr("checked", "checked");
 
 const list = $("#index-list");
 let baseUrl = null;
